@@ -1,0 +1,85 @@
+{% extends 'body.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load erp_tags %}
+
+{% block headScripts %}
+<!-- DataTables & Plugins -->
+<link rel="stylesheet" href="{% static 'css/ventas/ven_0122.css' %}">
+<!--<link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/select/css/select2.min.css' %}">-->
+
+{% block headScriptsList %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title "><b>{{ titulo }}</b></h3>
+
+    </div>
+</div>
+
+<div class="card card-primary card-outline">
+
+    <div class="card-body">
+
+        <table id="TablaTsPedido"
+               class="table table-sm table-hover table-bordered table-striped dataTable dtr-inline table-small-font">
+            <thead>
+            <tr>
+
+                <th>Comprobante</th>
+                <th>Nro. Web</th>
+                <th>Identificación</th>
+                <th>Nombre Cliente</th>
+                <th>Fecha Emisión</th>
+                <th>Subtotal</th>
+                <th>IVA</th>
+                <th>Total</th>
+                <th>Agente</th>
+                <th>Zona</th>
+                <th>Coord.</th>
+                <th>Estado</th>
+<!--                <th>nro comprob</th>-->
+
+
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <a class="btn btn-primary" id="btn_nuevo_registro" data-accion="ING">
+            <i class="fa fa-plus"></i>
+        </a>
+         <a class="btn btn-primary" id="btn_editar_registro" data-accion="MOD">
+            <i class="fa fa-edit"></i>
+        </a>
+         <a class="btn btn-primary" id="btn_mostrar_registro" data-accion="MOS">
+            <i class="fa fa-eye"></i>
+        </a>
+
+
+
+    </div>
+
+
+</div>
+
+
+{% block contentList %}{% endblock %}
+{% endblock %}
+
+{% block bodyFooterScripts %}
+<script src="{% static 'js/ventas/ven_0122.js' %}"></script>
+
+<script>
+
+
+</script>
+
+<!--<script src="{% static 'lib/adminlte-3.0.4/plugins/select/js/select2.min.js' %}"></script>-->
+{% block bodyFooterScriptsList %}{% endblock %}
+{% endblock %}
+

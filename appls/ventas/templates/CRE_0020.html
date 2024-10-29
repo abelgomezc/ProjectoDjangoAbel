@@ -1,0 +1,303 @@
+{% extends 'bodyplugis.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load erp_tags %}
+
+{% block headScripts %}
+<!-- DataTables & Plugins -->
+<link rel="stylesheet" href="{% static 'css/ventas/cre_0020.css' %}">
+<link rel="stylesheet"
+      href="{% static 'lib/adminlte-3.0.4/plugins/select/css/select2.min.css' %}">
+
+
+{% block headScriptsList %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+
+<div class="card card-primary card-outline card-outline-tabs">
+    <div class="card-header p-0 border-bottom-0">
+        <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="custom-tabs-four-personas-tab" data-toggle="pill"
+                   href="#custom-tabs-four-personas" role="tab" aria-controls="custom-tabs-four-personas"
+                   aria-selected="true">Personas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="custom-tabs-four-direcciones-tab" data-toggle="pill"
+                   href="#custom-tabs-four-direcciones" role="tab" aria-controls="custom-tabs-four-direcciones"
+                   aria-selected="false">Direccion y Telefonos</a>
+            </li>
+
+        </ul>
+    </div>
+    <div class="card-body">
+        <div class="tab-content" id="custom-tabs-four-tabContent">
+            <div class="tab-pane fade show active" id="custom-tabs-four-personas" role="tabpanel"
+                 aria-labelledby="custom-tabs-four-personas-tab">
+
+                <table id="TablaPersonas"
+                       class="table table-sm table-hover table-bordered table-striped dataTable dtr-inline">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Identificación</th>
+                        <th>Nombres</th>
+                        <th>Direccion</th>
+                        <th>Teléfono</th>
+                        <th>Nombre Comercial</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+
+                <button type="button" class="btn btn-primary" data-toggle="modal" id="btnNuevorRegistro">
+                    <i class="fa-solid fas fa-user-plus fa-2xs"></i>
+                </button>
+
+                <button type="button" class="btn btn-primary" data-toggle="modal" id="btnModificarRegistro">
+                    <i class="fa-solid fas fa-edit"></i>
+                </button>
+
+                <button type="button" class="btn btn-primary" data-toggle="modal" id="btnMostrarRegistro">
+                    <i class="fa-solid fas fa-eye fa-2xs"></i>
+                </button>
+
+                <button type="button" class="btn btn-success" data-toggle="modal" id="btnSeleccionarPersona">
+                    <i class="fa fa-check"></i>
+                </button>
+
+
+            </div>
+
+            <div class="tab-pane fade" id="custom-tabs-four-direcciones" role="tabpanel"
+                 aria-labelledby="custom-tabs-four-direcciones-tab">
+
+                <!-- Primer div con la tabla de direcciones -->
+                <div class="tabla-direcciones">
+                    <div class="param-info">
+                        <label>Persona:</label>
+                        <input type="text" id="cod_persona" class="form-control param-input-small" readonly>
+                        <input type="text" id="nombre_persona" class="form-control param-input-large" readonly>
+                    </div>
+                    <table id="TablaDireciones"
+                           class="table table-sm table-hover table-bordered table-striped dataTable dtr-inline">
+                        <thead>
+                        <tr>
+                            <th>Tipo Dirección</th>
+                            <th>Calle</th>
+                            <th>Número</th>
+                            <th>Intersección</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Segundo div con dos tablas divididas en columnas -->
+                <div class="tabla-contactos">
+                    <div class="tabla-telefonos">
+                        <table id="TablaTelefonos"
+                               class="table table-sm table-hover table-bordered table-striped dataTable dtr-inline">
+                            <thead>
+                            <tr>
+                                <th>Tipo Teléfono</th>
+                                <th>Teléfono</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tabla-correo-electronicos">
+                        <table id="TablaCorreoElectronicos"
+                               class="table table-sm table-hover table-bordered table-striped dataTable dtr-inline">
+                            <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Contacto</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+<!--MODAL FORM CLIENTES-->
+<div class="modal fade" id="modalDatosPersona" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Datos Persona</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="alertContainer"></div>
+                <form class="">
+                    <div class="tipo-persona-group">
+                        <label>Tipo Persona:</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tipoPersona" id="NAT"
+                                   value="NAT">
+                            <label class="form-check-label" for="NAT">Natural</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tipoPersona" id="JUR"
+                                   value="JUR">
+                            <label class="form-check-label" for="JUR">Jurídica</label>
+                        </div>
+                    </div>
+                    <!-- Identificación -->
+                    <div class="form-group d-flex align-items-center mb-1">
+                        <label for="selecttipoIdentificacion" class="mr-2 mb-0">Identificación:</label>
+                        <select class="js-example-basic-single mr-2" name="state"
+                                id="selecttipoIdentificacion"></select>
+                        <input type="text" class="form-control form-control-sm" id="identificacion"
+                               placeholder="Identificación">
+                    </div>
+
+                    <!-- Apellidos -->
+                    <div class="form-group d-flex align-items-center mb-1">
+                        <label for="apellidosPaternos" class="mr-2 mb-0">Apellidos:</label>
+                        <input type="text" class="form-control form-control-sm mr-2" id="apellidosPaternos"
+                               placeholder="Apellidos Paternos">
+                        <input type="text" class="form-control form-control-sm" id="apellidosMaternos"
+                               placeholder="Apellidos Maternos">
+                    </div>
+
+                    <!-- Nombres -->
+                    <div class="form-group d-flex align-items-center mb-1">
+                        <label for="primerNombre" class="mr-2 mb-0">Nombres:</label>
+                        <input type="text" class="form-control form-control-sm mr-2" id="primerNombre"
+                               placeholder="Primer Nombre">
+                        <input type="text" class="form-control form-control-sm" id="segundoNombre"
+                               placeholder="Segundo Nombre">
+                    </div>
+
+                    <!-- Razón Social -->
+                    <div class="form-group d-flex align-items-center mb-1">
+                        <label for="razonSocial" class="mr-2 ">Razón Social:</label>
+                        <input type="text" class="form-control form-control-sm long-input" id="razonSocial"
+                               placeholder="Razón Social">
+                    </div>
+
+                    <!-- Nombre Comercial -->
+                    <div class="form-group d-flex align-items-center mb-1">
+                        <label for="nombreComercial" class="mr-2 ">Nombre Comercial:</label>
+                        <input type="text" class="form-control form-control-sm long-input" id="nombreComercial"
+                               placeholder="Nombre Comercial">
+                    </div>
+
+                    <!-- País -->
+                    <div class="form-group d-flex align-items-center mb-1">
+                        <label for="cod_pais" class="mr-2 mb-0">País:</label>
+                        <input type="text" class="form-control form-control-sm mr-2 small-input" id="cod_pais">
+                        <select class="js-example-basic-single " name="state" id="selectPais"></select>
+                    </div>
+
+                    <!-- Ciudad -->
+                    <div class="form-group d-flex align-items-center mb-1">
+                        <label for="cod_lugar" class="mr-2 mb-0">Ciudad:</label>
+                        <input type="text" class="form-control form-control-sm mr-2 small-input" id="cod_lugar"
+                               placeholder="Ciudad">
+                        <select class="js-example-basic-single" name="state" id="selectCiudad"
+                        ></select>
+                        <!--                        <input type="text" class="form-control form-control-sm" id="nombre_ciudad">-->
+                    </div>
+
+                    <!-- Calle y Número -->
+                    <div class="form-group d-flex align-items-center mb-1">
+                        <label for="direccion" class="mr-2 mb-0">Calle:</label>
+                        <input type="text" class="form-control form-control-sm mr-2 long-input" id="direccion"
+                               placeholder="Calle">
+                    </div>
+                    <div class="form-group d-flex align-items-center mb-1">
+                        <label for="numero" class="mr-2 mb-0">Número:</label>
+                        <input type="text" class="form-control form-control-sm mr-2 small-input" id="numero"
+                               placeholder="Número">
+                        <label for="interseccion" class="mr-2 mb-0 exclude-width">Intersección:</label>
+                        <input type="text" class="form-control form-control-sm mr-2 " id="interseccion"
+                               placeholder="Intersección">
+                    </div>
+                    <!-- Convencional y Celular -->
+                    <div class="form-group d-flex align-items-center mb-1">
+                        <label for="convencional" class="mr-2 mb-0">Convencional:</label>
+                        <input type="tel" class="form-control form-control-sm mr-2 small-input" id="convencional"
+                               placeholder="Convencional">
+                        <label for="celular" class="mr-2 mb-0 exclude-width">Celular:</label>
+                        <input type="tel" class="form-control form-control-sm " id="celular"
+                               placeholder="Celular">
+                    </div>
+
+                    <!-- Correo Electrónico -->
+                    <div class="form-group d-flex align-items-center mb-1">
+                        <label for="correoElectronico" class="mr-2 mb-0">Correo:</label>
+                        <input type="email" class="form-control form-control-sm long-input" id="correoElectronico"
+                               placeholder="Correo Electrónico">
+                    </div>
+
+                    <!-- Zona Cliente -->
+                    <div class="form-group d-flex align-items-center mb-1">
+                        <label for="cod_zona" class="mr-2 mb-0">Zona Cliente:</label>
+                        <input type="text" class="form-control form-control-sm mr-2 small-input" id="cod_zona"
+                               placeholder="Zona">
+                        <select class="js-example-basic-single" name="state" id="selectZona"
+                        ></select>
+
+                    </div>
+
+                    <!-- Tipo Precio -->
+                    <div class="form-group d-flex align-items-center mb-1">
+                        <label for="cod_tipo_precio" class="mr-2 mb-0">Tipo Precio:</label>
+                        <input type="text" class="form-control form-control-sm mr-2 small-input" id="cod_tipo_precio"
+                               placeholder="Tipo Precio">
+                        <select class="js-example-basic-single" name="state" id="selectTipoPrecio"
+                        ></select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="btnGuardar" type="button" class="btn btn-primary">Guardar</button>
+                <button id="btnCerrar" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+{% block contentList %}{% endblock %}
+{% endblock %}
+
+{% block bodyFooterScripts %}
+<script src="{% static 'js/ventas/cre_0020.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/select/js/select2.min.js' %}"></script>
+<script>
+
+
+</script>
+<!--<script src="{% static 'lib/adminlte-3.0.4/plugins/select/js/select2.min.js' %}"></script>-->
+{% block bodyFooterScriptsList %}{% endblock %}
+
+{% endblock %}

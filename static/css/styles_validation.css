@@ -1,0 +1,29 @@
+span.asteriskField {
+    color: red;
+}
+
+/*Copiado por: dre*/
+/*Fecha: 11/03/2022 09:19*/
+/*Descripción: Tachado de la grid (syncfunsion).*/
+.below-30 {
+    text-decoration: line-through;
+}
+
+/*para las listas simples */
+.select {
+    font-size: .9rem;
+}
+
+.disablegrid {
+    pointer-events: none;
+    opacity: 0.7;
+    font-weight: bold;
+}
+
+/* Colorear columna de grid */
+.e-grid .e-rowcell.columnBgGreen{
+  background-color: #5ff661;
+  /*font-family: 'Bell MT'; //Cambia el tipo de letra
+	color: red;
+	font-size: 20px;*/
+}

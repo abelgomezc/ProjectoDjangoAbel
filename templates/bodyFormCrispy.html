@@ -1,0 +1,94 @@
+{% extends 'body.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block headScripts %}
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/jquery/jquery.min.js' %}"></script>
+    {% if grids_detalles %}
+{#        <script src="https://cdn.syncfusion.com/ej2/21.2.3/dist/ej2.min.js" type="text/javascript"></script>#}
+{#        <link href="https://cdn.syncfusion.com/ej2/21.2.3/material.css" rel="stylesheet">#}
+{#        <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js" type="text/javascript"></script>#}
+        <link href="{% static '/css/tailwind/tailwind.css' %}" rel="stylesheet">
+{#        <script src="{% static 'json/syncfusion_es.js' %}" type="text/javascript"></script>#}
+        <script>
+            //Inicializa el grid (Detalle)
+            /*ej.grids.Grid.Inject(ej.grids.Edit);
+            ej.base.enableRipple(true);
+            ej.base.L10n.load(data);*/
+        </script>
+    {% endif %}
+
+    <style>
+        .below-30 {
+            text-decoration: line-through;
+        }
+
+        .disablegrid {
+            pointer-events: none;
+            opacity: 0.9;
+        }
+
+        #header_id {
+            margin-left: auto;
+            margin-right: 0;
+        }
+    </style>
+
+    {% block headScriptsForm %}
+    {% endblock %}
+{% endblock %}
+
+{% block content %}
+    {% crispy form %}
+
+    {% load crispy_forms_field %}
+
+    {% for field in form %}
+        {% if field.help_text %}
+            <script>
+                if (document.getElementById('{{ field.id_for_label }}').parentElement.className == 'custom-control custom-radio') {
+                    $("<a class='nav-link' data-toggle='tooltip' data-placement='right' title='{{ field.help_text }}'> <i id='{{ field.id_for_label }}ic'  class='fa fa-question-circle-o' style='margin: auto;' >" +
+                        "</i></a>").insertAfter(document.getElementById('{{ field.id_for_label }}').parentElement.parentElement);
+                } else {
+                    $('label[for="{{ field.id_for_label }}"]').parent().append("<a class='nav-link' data-toggle='tooltip' data-placement='right' title='{{ field.help_text }}'> <i id='{{ field.id_for_label }}ic'  class='fa fa-question-circle-o' style='margin: auto;' >" +
+                        "</i></a>");
+                }
+            </script>
+        {% endif %}
+    {% endfor %}
+
+    <script>
+        $(".custom-radio").parent().removeClass('row');
+    </script>
+
+    {% block contentForm %}
+    {% endblock %}
+{% endblock %}
+
+{% block bodyFooterScripts %}
+    <!-- Datepicker libs -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css"
+          type="text/css" media="all" rel="stylesheet">
+    <link href="/static/bootstrap_datepicker_plus/css/datepicker-widget.css" type="text/css" media="all"
+          rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="/static/bootstrap_datepicker_plus/js/datepicker-widget.js"></script>
+
+    <script>
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+        $(document).ready(function () {
+            $("small[id^=hint_]").each(function (index, small_tag) {
+                $("label[for='" + small_tag.id.substring(5, small_tag.id.length) + "']").attr('title', small_tag.innerText);
+                small_tag.remove();
+            });
+        });
+
+
+    </script>
+    {% block bodyFooterScriptsForm %}
+    {% endblock %}
+{% endblock %}

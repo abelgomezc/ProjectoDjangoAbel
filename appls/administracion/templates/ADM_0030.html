@@ -1,0 +1,215 @@
+{% extends 'body.html' %}
+{% load static %}
+{% load erp_tags %}
+
+{% block headScripts %}
+<!-- DataTables  & Plugins -->
+<link rel="stylesheet"
+      href="{% static 'lib/adminlte-3.0.4/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
+<link rel="stylesheet"
+      href="{% static 'lib/adminlte-3.0.4/plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+<link rel="stylesheet"
+      href="{% static 'lib/adminlte-3.0.4/plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
+
+<link rel="stylesheet"
+      href="{% static 'lib/adminlte-3.0.4/js/datatable_spanish.json' %}">
+
+<!-- aqui se llama al js-->
+<script src="{% static 'js/administracion/definicionEntidades.js' %}"></script>
+<style>
+    table.dataTable thead tr {
+        background-color: #f7f7f7;
+    }
+    table {
+        border-collapse: collapse;
+        border-radius: 1em;
+        overflow: hidden;
+    }
+    .table-edit-pencil {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+    }
+    .btn {
+        font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
+    .my-custom-scrollbar {
+        position: relative;
+        height: 300px;
+        overflow: auto;
+    }
+    .table-wrapper-scroll-y {
+        display: block;
+    }
+
+    /* Ajustar la altura de las filas de todas las tablas con la clase 'dataTable' */
+    .table.dataTable tbody tr {
+        height: 14px; /* Valor fijo en píxeles para un control más preciso */
+    }
+
+    /* Ajustar el estilo de los elementos select para que se vean más compactos */
+    .table .form-control {
+        height: 14px; /* Asegúrate de que este valor coincida con la altura de las filas si es necesario */
+        padding: 0;
+        font-size: 0.8rem;
+        line-height: 140px; /* Alinea la altura de línea con la altura de los selects */
+    }
+
+    /* Ajustar el padding de las celdas para reducir la altura total de las filas */
+    .table.dataTable tbody td {
+        padding-top: 0; /* Reduce el espacio en la parte superior de la celda */
+        padding-bottom: 0; /* Reduce el espacio en la parte inferior de la celda */
+        line-height: normal; /* Restablece la altura de línea para evitar espacios adicionales */
+    }
+</style>
+
+
+{% block headScriptsList %}
+{% endblock %}
+{% endblock %}
+{% block content %}
+<!-- aqui se hace la vista all html-->
+<div class="card">
+    <div class="header">
+       <!-- <h3 class="card-title"><b>{{ titulo }}</b></h3>-->
+    </div>
+    <div class="card-body">
+        <table id="datatable_listaPersonas" class="table table-sm table-hover table-bordered table-striped dataTable dtr-inline">
+            <thead>
+                 <h3 class="card-title mx-2 mb-2" style="color: darkblue; font-size: 14px;"><b>Listado de Personas</b></h3>
+                 <tr>
+                     <th>Código</th>
+                     <th>Nombre</th>
+                     <th>Identificación</th>
+                     <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-12 col-sm-2">
+                <div class="card">
+                    <h3 class="card-title mx-2 mt-2" style="color: darkblue; font-size: 12px;"><b>Nueva Entidad</b></h3>
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <div class="card-tools d-flex justify-content-start mb-2">
+                            <button id="irPersonaNatural" class="btn btn-outline-secondary">Persona Natural</button>
+                        </div>
+                        <div class="card-tools d-flex justify-content-start">
+                            <button id="irPersonaJuridica" class="btn btn-outline-secondary">Persona Jurídica</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-3 mb-3 mb-sm-0 d-flex align-items-center justify-content-center">
+                <div>
+                    <button id="irEditar" class="btn btn-outline-secondary"><i class="fas fa-edit"></i></button>
+                    <button id="irVisualizar" class="btn btn-outline-secondary ml-2"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 d-flex align-items-center justify-content-end">
+                <div>
+                    <button id="irReferencias" class="btn btn-outline-secondary">Referencias</button>
+                    <button id="cancelar" class="btn btn-outline-secondary ml-2">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% block contentList %}
+{% endblock %}
+{% endblock %}
+
+{% block bodyFooterScripts %}
+<!-- Toastr messages -->
+<link rel="stylesheet" type="text/css" href="{% static 'lib/adminlte-3.0.4/plugins/toastr/toastr.css' %}"
+      media="all">
+<script type="text/javascript" src="{% static 'lib/adminlte-3.0.4/plugins/toastr/toastr.min.js' %}"></script>
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == 'success' %}
+<script type=text/javascript>toastr.
+{
+    {
+        message.tags
+    }
+}
+('{{ message }}')</script>
+{% elif message.tags == 'info' %}
+<script type=text/javascript>toastr.
+{
+    {
+        message.tags
+    }
+}
+('{{ message }}')</script>
+{% elif message.tags == 'warning' %}
+<script type=text/javascript>toastr.
+{
+    {
+        message.tags
+    }
+}
+('{{ message }}')</script>
+{% elif message.tags == 'error' %}
+<script type=text/javascript>toastr.
+{
+    {
+        message.tags
+    }
+}
+('{{ message }}')</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<!-- DataTables  & Plugins -->
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/jszip/jszip.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/pdfmake/vfs_fonts.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+<script src="{% static 'json/adminlte.js' %}" type="text/javascript"></script>
+<script type="application/javascript">
+    $(document).ready(function () {
+
+        table_opts = {
+        {
+            datatable_opts | js
+        }
+    }
+        ;
+        table_opts['language'] = table_es;
+        if (table_opts.drawCallback != null) {
+            eval("table_opts.drawCallback=" + fn_drawCallback);
+        }
+        $("#{{ datatable_id }}").DataTable(table_opts);
+    });
+</script>
+<!-- Print method -->
+<script src="{% static 'js/util_dev.js' %}"></script>
+
+
+{% csrf_token %}
+
+<script>
+
+    $(function () {
+        getListaPersonas();
+    });
+</script>
+
+{% block bodyFooterScriptsList %}
+
+{% endblock %}
+{% endblock %}

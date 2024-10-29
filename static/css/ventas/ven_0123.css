@@ -1,0 +1,410 @@
+/* Estilo general para todos los inputs y selects */
+.form-control {
+    height: 25px; /* Altura uniforme reducida para todos los inputs y selects */
+    font-size: 14px; /* Tamaño de fuente más pequeño para reducir la altura visual */
+    box-sizing: border-box; /* Incluye padding y border en el ancho total */
+}
+
+/* Estilo específico para los selects */
+
+.form-control.select-control {
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+    height: 25px; /* Altura fija del select */
+    padding-top: 2px; /* Ajuste del padding superior para alinear el texto */
+    line-height: 25px; /* Asegura que el texto se alinee con la altura del select */
+    box-sizing: border-box; /* Incluye padding y border en el ancho total */
+}
+
+/* Ajuste de altura para textarea */
+textarea.form-control {
+    height: auto; /* Permite que el textarea ajuste su altura según el contenido */
+    min-height: 40px; /* Altura mínima para el textarea */
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+}
+
+/* Clases para controlar el ancho */
+
+.codpequenos-input {
+    width: 50px;
+}
+
+.fecha-input {
+    width: 172px;
+}
+
+.tipotelef-input {
+    width: 150px;
+}
+
+.small_Indetif-input {
+    width: 120px;
+}
+
+.small-input {
+    width: 80px;
+}
+
+.medium-input {
+    width: 130px;
+}
+
+
+.large-input {
+    width: 190px;
+}
+
+.negoci-select {
+    width: 240px;
+}
+
+.full-width-input {
+    flex: 1; /* Ocupa todo el ancho disponible en el contenedor flex */
+}
+
+/* Estilo para los botones */
+.form-group .btn-icon {
+    width: 25px; /* Ancho reducido para los botones */
+    height: 25px; /* Altura reducida para los botones */
+    padding: 0; /* Sin padding */
+    text-align: center; /* Centrar icono */
+    border-radius: 2px; /* Bordes redondeados */
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+}
+
+/* Asegura que los inputs y selects no superen el ancho de su contenedor */
+.form-group {
+    margin-bottom: 10px; /* Espacio reducido entre los grupos de formulario */
+    display: flex; /* Usa flexbox para el alineamiento horizontal */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan si no caben en una línea */
+    gap: 0.2rem; /* Espacio reducido entre los elementos */
+    /* align-items: left;  Alinea verticalmente los elementos al centro */
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    box-sizing: border-box;
+
+}
+
+/* Sección con ancho específico y padding */
+.section {
+    width: 50%; /* Ajustar según el número de secciones */
+    padding-right: 1rem; /* Espacio entre secciones */
+}
+
+/* Alinea las secciones horizontalmente con margen mínimo entre ellas */
+.d-flex.justify-content-between {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.3rem; /* Espacio mínimo entre las secciones y el formulario */
+}
+
+
+/*DATATABLES*/
+table {
+    border-collapse: collapse;
+    /*border-radius: 1em;*/
+    overflow: hidden;
+}
+
+.table-edit-pencil {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+
+.btn {
+    font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 300px;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+
+.table.dataTable tbody tr {
+    height: 20px;
+}
+
+
+.table .form-control {
+    height: 20px;
+    padding: 0;
+    font-size: 0.8rem;
+    line-height: 20px;
+}
+
+
+.table.dataTable tbody td {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: normal;
+}
+
+/*control de tamaño de la columna */
+.table.dataTable tbody td.btnCell {
+    padding: 0;
+    text-align: center;
+}
+
+
+/* Tamaño pequeño para el modal */
+
+.modal-sm {
+    max-width: 50% !important; /* Ajusta el tamaño máximo del modal a un porcentaje */
+}
+
+.modal-dialog-centered {
+    margin: auto; /* Centra el modal verticalmente */
+}
+
+/* Ajusta el tamaño del modal */
+.modal-content {
+    height: auto; /* Deja que el contenido determine la altura */
+    max-height: 80vh; /* Altura máxima del modal (80% de la altura de la ventana) */
+}
+
+.modal-body {
+    padding: 0.8rem; /* Ajusta el padding para reducir el espacio alrededor del contenido */
+}
+
+.table-responsive {
+    overflow-x: auto; /* Permite el desplazamiento horizontal si es necesario */
+    max-height: 60vh; /* Altura máxima de la tabla dentro del modal (60% de la altura de la ventana) */
+    margin: 0; /* Elimina el margen para que la tabla use todo el ancho disponible */
+}
+
+
+/* Ajustar el tamaño de la fuente para que sea más pequeña */
+.table th, .table td {
+    font-size: 0.75rem; /* Tamaño de fuente pequeño */
+}
+
+.table {
+    font-size: 0.75rem; /* Tamaño de fuente pequeño para la tabla */
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    font-size: 0.50rem; /* Tamaño de fuente pequeño para los controles de paginación */
+}
+
+.modal-footer {
+    padding: 0.5rem; /* Ajusta el padding para los botones del footer */
+}
+
+.modal-title {
+    font-size: 1rem; /* Tamaño de fuente para el título del modal */
+}
+
+
+.modal-custom-width {
+    width: 70%; /* Ajusta este valor para el ancho deseado */
+    max-width: 1000px; /* Ancho máximo en píxeles */
+    height: 80vh; /* Ajusta la altura para que el modal no ocupe toda la pantalla verticalmente */
+    margin: auto; /* Centra el modal horizontalmente */
+}
+
+.modal-custom-width .modal-content {
+    height: 90%;
+}
+
+.modal-header, .modal-body {
+    padding: 0;
+}
+
+
+/*TABLA DETALLE*/
+
+
+/* Estilo exclusivo para TablaDetalle */
+#TablaDetalle tbody td {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: normal;
+    height: 15px; /* Altura más pequeña */
+}
+
+#TablaDetalle tbody td.btnCell {
+    padding: 0;
+    text-align: center;
+}
+
+/* Controla que las columnas de Item y Bodega sean más largas */
+#TablaDetalle tbody td:nth-child(2), /* Item column */
+#TablaDetalle tbody td:nth-child(5) /* Bodega column */
+{
+    width: 300px; /* Ancho fijo para estas dos columnas */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Otras celdas más pequeñas */
+#TablaDetalle tbody td:not(:nth-child(2)):not(:nth-child(5)) {
+    width: 80px; /* Ancho menor para las demás columnas */
+}
+
+
+/* Asegurar bordes visibles para la tabla */
+#TablaDetalle {
+    border-collapse: collapse; /* Asegura que los bordes de las celdas se fusionen */
+    width: 100%; /* Para que ocupe todo el ancho disponible */
+}
+
+#TablaDetalle th {
+    padding: 5px; /* Reducir el padding en general */
+    line-height: 1.2; /* Ajustar la altura de la línea para que el texto se vea más compacto */
+    white-space: normal; /* Permitir que el texto se ajuste en varias líneas */
+    word-wrap: break-word; /* Permitir que las palabras largas se dividan y ajusten */
+    font-size: 0.85rem; /* Ajustar el tamaño de la fuente si deseas un tamaño más pequeño */
+    text-align: center; /* Centrar el texto en el encabezado */
+}
+
+
+/* Para la columna de  */
+#TablaDetalle td.largo-column {
+    max-width: 300px; /* Ajusta este valor según el tamaño máximo que desees */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    overflow: hidden; /* Oculta el contenido que sobrepasa el ancho máximo */
+    text-overflow: ellipsis; /* Muestra "..." si el texto es demasiado largo */
+}
+
+#TablaDetalle td.corto-column {
+    max-width: 100px; /* Ajusta este valor según el tamaño máximo que desees */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    overflow: hidden; /* Oculta el contenido que sobrepasa el ancho máximo */
+    text-overflow: ellipsis; /* Muestra "..." si el texto es demasiado largo */
+}
+
+
+/* Para asegurar que la celda del checkbox ocupe todo el espacio */
+#TablaDetalle td.checkbox-column {
+    padding: 0; /* Elimina todo el padding de la celda */
+    text-align: center; /* Centra horizontalmente */
+    vertical-align: middle; /* Centra verticalmente */
+    width: 40px; /* Ajusta el ancho de la celda */
+}
+
+/* Ajusta el tamaño del checkbox para que ocupe toda la celda */
+#TablaDetalle td.checkbox-column input[type="checkbox"] {
+    width: 80%; /* El checkbox ocupará todo el ancho de la celda */
+    height: 80%; /* El checkbox ocupará toda la altura de la celda */
+    margin: 0; /* Elimina márgenes para un mejor ajuste */
+    box-sizing: border-box; /* Para asegurarse de que el padding y el borde se cuenten en el tamaño */
+}
+
+
+/* Para celdas editables con ancho fijo */
+#TablaDetalle td.editable {
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+
+
+    max-width: 50px; /* Máximo ancho de la celda */
+    width: 50px; /* Ancho fijo de la celda */
+    padding-right: 5px; /* Un pequeño padding para mejorar la legibilidad */
+    vertical-align: middle; /* Alinea el texto en el centro vertical */
+}
+
+/* Para permitir el desplazamiento horizontal en las celdas editables */
+#TablaDetalle td.editable[contenteditable="true"] {
+    overflow: auto; /* Activa el scroll en la celda editable */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+
+/* Añadir un scroll solo cuando el contenido sea demasiado largo */
+#TablaDetalle td.editable[contenteditable="true"]::-webkit-scrollbar {
+    height: 4px; /* Ajusta el tamaño de la barra de desplazamiento */
+}
+
+#TablaDetalle td.editable[contenteditable="true"]::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5); /* Color de la barra de desplazamiento */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+
+/*modal detalle*/
+/* Ajustar el ancho del modal */
+.modal-lg {
+    max-width: 70%; /* Ajusta este porcentaje según lo que necesites */
+}
+
+/* Limitar el alto del contenido y permitir desplazamiento si es necesario */
+.modal-bodyDetalle {
+    max-height: 500px; /* Ajusta el alto máximo del contenido */
+    overflow-y: auto; /* Permite desplazamiento vertical si el contenido es muy grande */
+}
+
+#modalTableDetalle {
+    white-space: nowrap; /* Evita que las celdas se dividan en varias líneas */
+}
+
+#modalTableDetalle th, #modalTableDetalle td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+/*PARA EL TEXTO A LA DERECHA DE UNA CELDA*/
+.text-right {
+    text-align: right;
+}
+
+
+/* pie de la tabla  */
+
+.footer-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+
+}
+
+.footer-section > div {
+    width: 24%;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+
+
+}
+
+.footer-section > div:first-child {
+    width: 30%;
+}
+
+
+.footer-section label {
+    flex: 0 0 40%; /**/
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.footer-section input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 20px; /* Altura uniforme */
+    font-size: 14px; /* fuente */
+
+}
+
+.form-group-pie {
+    display: flex;
+    margin-bottom: 2px;
+}
+
+
+ /*celdas de pie de la tabla */
+
+
+
+
+

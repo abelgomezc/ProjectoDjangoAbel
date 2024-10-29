@@ -1,0 +1,193 @@
+/* CSS personalizado */
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.2rem; /* Espacio mínimo entre los grupos de formulario */
+}
+
+.form-group label {
+    min-width: 60px; /* Ancho mínimo para las etiquetas */
+    margin-right: 0; /* Sin espacio entre la etiqueta y el input */
+    font-size: 0.75rem; /* Tamaño de fuente reducido */
+    flex: 0 0 auto; /* Evita que la etiqueta se expanda */
+}
+
+.form-group input,
+.form-group select {
+   /* width: 80px;  Ancho fijo para los inputs y selects */
+    width: 100%;
+    flex: 1; /* Ocupa todo el espacio restante */
+    margin-right: 0.1rem; /* Espacio entre la etiqueta y el input */
+    border-radius: 2px; /* Opcional: bordes redondeados */
+    height: 25px; /* Altura fija para los inputs y selects */
+    font-size: 0.75rem; /* Tamaño de fuente reducido */
+    padding: 0.1rem 0.2rem; /* Reducción de padding */
+    margin-left: 0.1rem; /* Espacio entre la etiqueta y el input/select */
+    border-radius: 2px; /* Opcional: bordes redondeados */
+}
+
+.form-group .btn-icon {
+    width: 30px; /* Ancho fijo para los botones */
+    height: 25px; /* Altura fija para los botones */
+    padding: 0; /* Sin padding */
+    text-align: center; /* Centrar icono */
+    border-radius: 2px; /* Bordes redondeados */
+}
+
+.section {
+    width: 50%; /* Ajustar según el número de secciones */
+    padding-right: 1rem; /* Espacio entre secciones */
+}
+
+.d-flex.justify-content-between {
+    margin-bottom: 0.3rem; /* Espacio mínimo entre las secciones y el formulario */
+}
+.btn-proformas {
+    width: 90px; /* Ajusta el ancho según el contenido */
+    padding: 0.1rem 0.4rem; /* Reducción del padding */
+    font-size: 0.75rem; /* Tamaño de fuente reducido */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.form-container {
+    border: 1px solid #ccc; /* Borde alrededor del contenedor */
+    padding: 10px; /* Espacio interno del contenedor */
+    margin: 15px 0; /* Espacio alrededor del contenedor */
+    border-radius: 5px; /* Bordes redondeados opcionales */
+    background-color: #f9f9f9; /* Color de fondo opcional */
+}
+
+.form-group {
+    margin-bottom: 10px; /* Espacio entre los grupos de formulario dentro del contenedor */
+}
+
+
+/*datatables*/
+table {
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+.table-edit-pencil {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+
+.btn {
+    font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 300px;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+
+.table.dataTable tbody tr {
+    height: 30px;
+}
+
+
+.table .form-control {
+    height: 30px;
+    padding: 0;
+    font-size: 0.8rem;
+    line-height: 30px;
+}
+
+
+.table.dataTable tbody td {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: normal;
+}
+
+/*control de tamaño de la columna */
+.table.dataTable tbody td.btnCell {
+    padding: 0;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+/* Tamaño pequeño para el modal */
+.modal-sm {
+    max-width: 20% !important; /* Ajusta el tamaño máximo del modal a un porcentaje */
+}
+
+.modal-dialog-centered {
+    margin: auto; /* Centra el modal verticalmente */
+}
+
+/* Ajusta el tamaño del modal */
+.modal-content {
+    height: auto; /* Deja que el contenido determine la altura */
+    max-height: 80vh; /* Altura máxima del modal (80% de la altura de la ventana) */
+}
+
+.modal-body {
+    padding: 0.8rem; /* Ajusta el padding para reducir el espacio alrededor del contenido */
+}
+
+.table-responsive {
+    overflow-x: auto; /* Permite el desplazamiento horizontal si es necesario */
+    max-height: 60vh; /* Altura máxima de la tabla dentro del modal (60% de la altura de la ventana) */
+    margin: 0; /* Elimina el margen para que la tabla use todo el ancho disponible */
+}
+
+/* Ajustar el tamaño de la fuente para que sea más pequeña */
+.table th, .table td {
+    font-size: 0.75rem; /* Tamaño de fuente pequeño */
+}
+
+.table {
+    font-size: 0.75rem; /* Tamaño de fuente pequeño para la tabla */
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    font-size: 0.75rem; /* Tamaño de fuente pequeño para los controles de paginación */
+}
+
+.modal-footer {
+    padding: 0.5rem; /* Ajusta el padding para los botones del footer */
+}
+
+.modal-title {
+    font-size: 1rem; /* Tamaño de fuente para el título del modal */
+}
+
+.modal-custom-width {
+    width: 70%; /* Ajusta este valor para el ancho deseado */
+    max-width: 1000px; /* Ancho máximo en píxeles */
+    height: 80vh; /* Ajusta la altura para que el modal no ocupe toda la pantalla verticalmente */
+    margin: auto; /* Centra el modal horizontalmente */
+}
+
+.modal-custom-width .modal-content {
+    height: 90%;
+}
+
+.modal-header, .modal-body {
+    padding: 0;
+}
+
+
+
+

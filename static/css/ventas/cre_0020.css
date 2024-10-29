@@ -1,0 +1,314 @@
+table {
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+.table-edit-pencil {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+
+.btn {
+    font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 300px;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+
+.table.dataTable tbody tr {
+    height: 30px;
+}
+
+
+.table .form-control {
+    height: 30px;
+    padding: 0;
+    font-size: 0.8rem;
+    line-height: 30px;
+}
+
+
+.table.dataTable tbody td {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: normal;
+}
+
+/*control de tamaño de la columna */
+.table.dataTable tbody td.btnCell {
+    padding: 0;
+    text-align: center;
+}
+
+.highlight {
+    background-color: #ffcccc !important;
+}
+
+.selected-row {
+    background-color: #d9edf7;
+}
+
+
+.selected-row,
+.selected-row td,
+.selected-row select {
+    background-color: #b6cfed !important;
+}
+
+
+/* Contenedor principal */
+.tab-pane {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espacio entre las secciones */
+}
+
+/* Primer div con la tabla de direcciones */
+.tabla-direcciones {
+    flex: 1;
+}
+
+/* Segundo div dividido en dos columnas */
+.tabla-contactos {
+    display: flex;
+    gap: 20px; /* Espacio entre las dos tablas */
+}
+
+/* Cada tabla dentro del div de contactos ocupa la mitad del ancho del contenedor de contactos */
+.tabla-telefonos,
+.tabla-correo-electronicos {
+    flex: 1;
+}
+
+
+.param-info {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.param-input-small {
+    flex: none;
+    width: 100px;
+    height: 25px;
+    padding: 2px 5px;
+    font-size: 14px;
+}
+
+.param-input-large {
+    flex: none;
+    width: 400px;
+    height: 25px;
+    padding: 2px 5px;
+    font-size: 14px;
+}
+
+
+.small-form {
+    max-width: 450px;
+    width: 90%;
+    margin: auto;
+    text-align: left;
+}
+
+.small-form .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.small-form .form-group label {
+    font-size: 0.75rem;
+    width: 30%;
+    text-align: right;
+    margin-right: 10px; /* Espacio entre la etiqueta y el campo */
+    white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
+}
+
+
+.small-form .form-group .form-control,
+.small-form .form-group select {
+    /* Mantenemos las propiedades anteriores */
+    flex: 1; /* Ocupa todo el espacio restante */
+    font-size: 0.75rem; /* Tamaño de fuente más pequeño */
+    padding: 0.25rem 0.5rem; /* Reduce el relleno */
+    width: auto; /* Ancho automático para adaptarse al contenido */
+    max-width: 30%; /* Reducimos el ancho máximo */
+    font-weight: bold; /* Tipo de letra negrita */
+}
+
+
+
+
+/* MODAL PERSONAS  */
+
+
+#modalDatosPersona label {
+    width: 150px; /* Anchura fija para las etiquetas */
+    margin-right: 0.3rem; /* Espacio entre la etiqueta y el input */
+    text-align: right; /* Alineación a la derecha para las etiquetas */
+    white-space: nowrap; /* Evita que el texto de las etiquetas se divida en varias líneas */
+     font-size: 0.85rem;
+}
+
+/* Excluye las etiquetas que están dentro de .form-check */
+#modalDatosPersona .form-check label {
+    width: auto; /* Restablece el ancho de las etiquetas dentro de los radio buttons */
+    margin-right: 0; /* Elimina el margen derecho extra */
+    text-align: left; /* Alinea el texto de los labels a la izquierda */
+}
+
+/* Excluir las etiquetas con la clase .exclude-width */
+#modalDatosPersona label.exclude-width {
+    width: auto; /* Restablece el ancho a automático */
+    margin-right: 0.3rem; /* Mantener espacio entre la etiqueta y el input */
+    text-align: left; /* Alinea a la izquierda para estas etiquetas */
+}
+
+/* Estilo para los inputs y selects */
+#modalDatosPersona .form-control,
+#modalDatosPersona .js-example-basic-single {
+    flex: 1;
+    min-width: 120px;
+    max-width: 250px; /* Limita la anchura máxima para mantener la alineación */
+    box-sizing: border-box;
+     font-size: 0.75rem; /* Tamaño de fuente más pequeño */
+}
+
+
+/* Ajustes para los inputs más cortos */
+#modalDatosPersona .small-input {
+    max-width: 100px; /* Acorta el tamaño máximo de los inputs más pequeños */
+}
+
+/* Ajustes para el input largo */
+#modalDatosPersona .long-input {
+    flex: 1 1 100%; /* Hace que el input ocupe todo el ancho disponible */
+    max-width: calc(100% - 150px - 0.3rem); /* Asegura que el input no se expanda más allá del contenedor */
+}
+
+/* Ajustes para campos dobles en la misma fila */
+#modalDatosPersona .form-group.double {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+#modalDatosPersona .form-group.double label {
+    flex: 0 0 150px; /* Anchura fija para ambas etiquetas */
+}
+
+#modalDatosPersona .form-group.double .form-control {
+    margin-right: 0.3rem; /* Espacio entre los dos inputs */
+    flex: 1;
+}
+
+/* Estilo para el cuerpo del modal */
+#modalDatosPersona .modal-body {
+    padding: 0.1rem; /* Reducción del padding interno del modal */
+}
+
+/* Ajustes del pie del modal */
+#modalDatosPersona .modal-footer {
+    padding: 0.5rem; /* Compacta el padding del pie de página */
+    display: flex;
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+}
+
+/* Contenedor de los radio buttons */
+#modalDatosPersona .form-check {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 0.5rem; /* Reduce el espacio entre los grupos de radio buttons */
+}
+
+/* Estilo para el input radio */
+#modalDatosPersona .form-check-input {
+    margin-right: 0.1rem; /* Reduce el espacio entre el radio button y su etiqueta */
+}
+
+/* Estilo para las etiquetas de los radio buttons */
+#modalDatosPersona .form-check-label {
+    margin-left: 0; /* Asegura que no haya margen izquierdo en la etiqueta */
+    margin-right: 0.5rem; /* Ajusta el margen derecho para que los elementos estén más juntos */
+}
+
+/* Ajusta la altura de los selects dentro del modal */
+/* Ajustes para el select en el modal */
+#modalDatosPersona .js-example-basic-single {
+    height: 2.4rem; /* Ajusta la altura del select */
+    padding: 0.25rem 0.5rem; /* Ajusta el padding interno para coincidir con la altura */
+    font-size: 0.75rem; /* Tamaño de fuente más pequeño */
+    border-radius: 0.25rem; /* Alinea los bordes con los otros inputs */
+    border: 1px solid #ced4da; /* Añade un borde similar al de los inputs */
+}
+
+#modalDatosPersona select.form-control {
+    height: 2.4rem; /* Ajusta la altura del select */
+    padding: 0.25rem 0.5rem; /* Ajusta el padding interno para coincidir con la altura */
+    font-size: 0.75rem; /* Tamaño de fuente más pequeño */
+}
+
+
+/* Ajustes para el contenedor del select */
+#modalDatosPersona .form-group .js-example-basic-single {
+    margin-right: 0.3rem; /* Añade margen entre el select y otros inputs */
+}
+
+/* Ajustes del modal */
+#modalDatosPersona .modal-dialog {
+    max-width: 600px; /* Ajusta este valor según sea necesario */
+    margin: 1.75rem auto; /* Centra el modal horizontalmente */
+}
+
+#modalDatosPersona .form-control {
+    width: calc(100% - 160px); /* Ajusta el ancho de los inputs para que coincida con el nuevo ancho del modal */
+}
+
+#modalDatosPersona .modal-content {
+    padding: 0.5rem 1rem; /* Ajusta el padding interior del modal */
+}
+
+/* Reducción de la altura de inputs y selects */
+#modalDatosPersona .form-control,
+#modalDatosPersona .js-example-basic-single {
+    height: 30px; /* Reduce la altura del input/select */
+    padding: 2px 4px; /* Ajusta el padding para un input más compacto */
+    font-size: 0.75rem; /* Ajusta el tamaño de la fuente */
+}
+
+/* Ajustes para los inputs más cortos */
+#modalDatosPersona .small-input {
+    height: 30px; /* Mantiene la altura pequeña */
+}
+
+/* Ajustes para el input largo */
+#modalDatosPersona .long-input {
+    height: 30px; /* Mantiene la altura del input largo */
+}
+
+/* Estilo para el input radio */
+#modalDatosPersona .form-check-input {
+    height: 20px; /* Ajusta la altura del radio button */
+    margin-top: 0.2rem; /* Alinea mejor el radio button con la etiqueta */
+}
+
+/* Estilo para las etiquetas de los radio buttons */
+#modalDatosPersona .form-check-label {
+    font-size: 0.75rem; /* Ajusta el tamaño de la fuente */
+    line-height: 1.5; /* Asegura que el texto esté bien centrado verticalmente */
+}
+
+

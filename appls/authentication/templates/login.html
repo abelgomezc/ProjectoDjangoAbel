@@ -1,0 +1,82 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{% load erp_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page_title }}</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/jpg" href="{% media 'img/sys/erp_favicon.png' %}"/>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/fontawesome-free/css/all.min.css' %}">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/css/adminlte.min.css' %}">
+    {{ form.media.css }}
+    <style>
+        input, select {
+            width: 100%
+        }
+    </style>
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <!-- /.login-logo -->
+    <div class="card card-outline ">
+        <div class="card-header text-center">
+            <img src="{% media 'img/sys/imgAbel.png' %}" style="max-height: 100%; max-width: 100%">
+        </div>
+        <div class="card-body">
+            {% crispy form %}
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>
+<!-- /.login-box -->
+<!-- AdminLTE App -->
+<script src="{% static 'lib/adminlte-3.0.4/plugins/jquery/jquery.min.js' %}"></script>
+{{ form.media.js }}
+<script>
+    function checkEmp(ele) {
+        /*$('#id_suc_id').find('option').remove().end();
+        if (ele.val()) {
+            $('#id_suc_id').prop('disabled', false);
+        } else {
+            $('#id_suc_id').prop('disabled', true);
+        }*/
+    }
+
+    $(document).ready(function () {
+        $emp = $('#id_emp_codigov');
+        checkEmp($emp);
+        $emp.change(function () {
+            checkEmp($emp);
+        })
+        $('.django-select2').djangoSelect2(
+            {
+                minimumResultsForSearch: -1,
+                width: 'resolve',
+            }
+        );
+    });
+
+
+</script>
+<!-- jQuery -->
+<!-- Bootstrap 4 -->
+<script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- overlayScrollbars -->
+<script src="{% static 'lib/adminlte-3.0.4/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'lib/adminlte-3.0.4/js/adminlte.min.js' %}"></script>
+</body>
+</html>

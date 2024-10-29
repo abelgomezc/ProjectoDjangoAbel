@@ -1,0 +1,389 @@
+{% extends 'body.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% load erp_tags %}
+
+{% block headScripts %}
+<!-- DataTables  & Plugins -->
+<link rel="stylesheet"
+      href="{% static 'lib/adminlte-3.0.4/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
+<link rel="stylesheet"
+      href="{% static 'lib/adminlte-3.0.4/plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+<link rel="stylesheet"
+      href="{% static 'lib/adminlte-3.0.4/plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
+
+<link rel="stylesheet"
+      href="{% static 'lib/adminlte-3.0.4/js/datatable_spanish.json' %}">
+
+<link rel="stylesheet"
+      href="{% static 'css/administracion/adm_0001.css' %}">
+
+{% block headScriptsList %}
+{% endblock %}
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title"><b>{{ titulo }}</b></h3>
+        <div class="card-tools">
+            {# BOTONES #}
+            <button id="saveChanges" class="btn btn-primary"><i class="fa fa-save"></i> Aplicar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelButton"><i
+                    class="fa fa-times"></i> Cancelar
+            </button>
+
+
+
+        </div>
+    </div>
+    <div class="card card-primary card-outline">
+
+        <div class="card-body">
+
+            <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="custom-content-below-empresas-tab" data-toggle="pill"
+                       href="#custom-content-below-empresas" role="tab" aria-controls="custom-content-below-empresas"
+                       aria-selected="true">Empresas</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="custom-content-below-parametros-tab" data-toggle="pill"
+                       href="#custom-content-below-parametros" role="tab"
+                       aria-controls="custom-content-below-parametros"
+                       aria-selected="false">Parametros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="custom-content-below-parametrosNum-tab" data-toggle="pill"
+                       href="#custom-content-below-parametrosNum" role="tab"
+                       aria-controls="custom-content-below-parametrosNum"
+                       aria-selected="false">Parametros Numericos</a>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="custom-content-below-tabContent">
+
+
+                <div class="tab-pane fade show active" id="custom-content-below-empresas" role="tabpanel"
+                     aria-labelledby="custom-content-below-empresas-tab">
+                    <div class="d-flex">
+                        <!-- Tabla de Empresas -->
+                        <div style="flex:5;">
+                            <table id="TablaEmpresas"
+                                   class="table table-sm table-hover table-bordered table-striped dataTable dtr-inline">
+                                <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Nombre</th>
+                                    <th>Estado</th>
+                                    <th>Entidad</th>
+                                    <th>Nombre Entidad</th>
+                                    <th></th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+
+
+                            <button id="addRowEmpresa" class="btn btn-primary"><i class="fa fa-plus"></i></button>
+                            <div class="d-flex justify-content-center align-items-right">
+                                <!-- Formulario de Empresas -->
+                                <form id="formEmpresa" method="post" class="small-form ">
+                                    <!--                                    {% csrf_token %}-->
+                                    <div class="form-group row">
+                                        <label for="nro_establecimientos_activos"
+                                               class="col-sm-4 col-form-label text-right">Nro Establecimientos
+                                            Activos</label>
+                                        <input type="number" class="form-control form-control-sm"
+                                               id="nro_establecimientos_activos"
+                                               name="nro_establecimientos_activos" min="0">
+
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="nro_resolucion_contrib_esp"
+                                               class="col-sm-4 col-form-label text-right">Nro Resolución Contrib
+                                            Esp</label>
+                                        <input type="number" class="form-control form-control-sm"
+                                               id="nro_resolucion_contrib_esp" name="nro_resolucion_contrib_esp"
+                                               min="0">
+
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="fecha_nro_resolucion" class="col-sm-4 col-form-label text-right">Fecha
+                                            Nro Resolución</label>
+                                        <input type="date" class="form-control form-control-sm"
+                                               id="fecha_nro_resolucion" name="fecha_nro_resolucion">
+
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="cod_rol" class="col-sm-4 col-form-label text-right">Código
+                                            Rol</label>
+                                        <select class="form-control form-control-sm" id="cod_rol" name="cod_rol">
+                                            <!-- Opciones del select -->
+                                            <option value="PERSONAL">Personal</option>
+                                            <option value="BASICO">Básico</option>
+                                            <option value="COMERCIA">Comercial</option>
+                                            <option value="CONTABLE">Contable Completo</option>
+                                            <option value="PREMIUM">Premium</option>
+                                            <option value="RRHH">RRHH</option>
+                                            <option value="CONTA">Contable</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="crm" class="col-sm-4 col-form-label text-right">CRM</label>
+                                        <select class="form-control form-control-sm" id="crm" name="crm">
+                                            <!-- Opciones del select -->
+                                            <option value="N">No</option>
+                                            <option value="S">Si</option>
+
+
+                                        </select>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Sección de la imagen -->
+                        <div style="flex: 1; position: sticky; top: 0; display: flex; flex-direction: column; align-items: center;">
+                            <div style="margin-top: 10px; text-align: center;">
+                                <!-- Contenido de la imagen -->
+                                <div class="image-container">
+                                    <img id="logoEmpresa" src="{% static 'img/sys/nodisponible.png' %}"
+                                         alt="Logo de la empresa" class="logo">
+                                </div>
+                                <div style="margin-top: 10px; text-align: center;">
+
+                                    <input type="file" id="inputLogoEmpresa" accept="image/*" style="display: none;">
+                                    <hr>
+
+                                    <button id="seleccionarImagen" class="btn btn-secondary" title="Seleccionar Imagen">
+                                        <i class="fas fa-upload"></i>
+                                    </button>
+                                    <button id="guardarImagen" class="btn btn-success" title="Guardar Imagen"
+                                            style="margin-left: 5px;">
+                                        <i class="fas fa-save"></i>
+                                    </button>
+                                    <button id="limpiarImagen" class="btn btn-danger" title="Limpiar Imagen"
+                                            style="margin-left: 5px;">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="tab-pane fade" id="custom-content-below-parametros" role="tabpanel"
+                     aria-labelledby="custom-content-below-parametros-tab">
+                    <br>
+                    <div class="param-info">
+                        <input type="text" id="cod_empresa_param" class="form-control param-input-small" readonly>
+                        <input type="text" id="nombre_empresa_param" class="form-control param-input-large" readonly>
+                    </div>
+
+                    <table id="TablaParametros"
+                           class="table table-sm table-hover table-bordered table-striped dataTable dtr-inline">
+                        <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Valor</th>
+                            <th>Observaciones</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                    <button id="addRowParametro" class="btn btn-primary"><i class="fa fa-plus"></i></button>
+
+                </div>
+                <div class="tab-pane fade" id="custom-content-below-parametrosNum" role="tabpanel"
+                     aria-labelledby="custom-content-below-parametrosNum-tab">
+                    <br>
+                    <div class="param-info">
+                        <input type="text" id="cod_empresa_param_num" class="form-control param-input-small" readonly>
+                        <input type="text" id="nombre_empresa_param_num" class="form-control param-input-large"
+                               readonly>
+                    </div>
+
+
+                    <table id="TablaParametrosNum"
+                           class="table table-sm table-hover table-bordered table-striped dataTable dtr-inline">
+                        <thead>
+                        <tr>
+
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Valor</th>
+                            <th>Observaciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                    <button id="addRowParametroNum" class="btn btn-primary"><i class="fa fa-plus"></i></button>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+{% block contentList %}
+{% endblock %}
+{% endblock %}
+
+{% block bodyFooterScripts %}
+<!-- Toastr messages -->
+<link rel="stylesheet" type="text/css" href="{% static 'lib/adminlte-3.0.4/plugins/toastr/toastr.css' %}"
+      media="all">
+<script type="text/javascript" src="{% static 'lib/adminlte-3.0.4/plugins/toastr/toastr.min.js' %}"></script>
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == 'success' %}
+<script type=text/javascript>toastr.
+{
+    {
+        message.tags
+    }
+}
+('{{ message }}')</script>
+{% elif message.tags == 'info' %}
+<script type=text/javascript>toastr.
+{
+    {
+        message.tags
+    }
+}
+('{{ message }}')</script>
+{% elif message.tags == 'warning' %}
+<script type=text/javascript>toastr.
+{
+    {
+        message.tags
+    }
+}
+('{{ message }}')</script>
+{% elif message.tags == 'error' %}
+<script type=text/javascript>toastr.
+{
+    {
+        message.tags
+    }
+}
+('{{ message }}')</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<!-- DataTables  & Plugins -->
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/jszip/jszip.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/pdfmake/vfs_fonts.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+<script src="{% static 'json/adminlte.js' %}" type="text/javascript"></script>
+<script type="application/javascript">
+    $(document).ready(function () {
+
+        table_opts = {
+        {
+            datatable_opts | js
+        }
+    }
+        ;
+        table_opts['language'] = table_es;
+        if (table_opts.drawCallback != null) {
+            eval("table_opts.drawCallback=" + fn_drawCallback);
+        }
+        $("#{{ datatable_id }}").DataTable(table_opts);
+    });
+</script>
+<!-- Print method -->
+<script src="{% static 'js/util_dev.js' %}"></script>
+
+
+{% csrf_token %}
+
+<script type="text/javascript">
+    //btnDownload_id
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    //download specific report with pk
+    // funciona solo para listas en donde se necesite un reporte con una llave primaria
+    // se mostrara en la segunda columna dela fila
+    function downloadReport(pk) {
+        fields = new FormData();
+        fields.append('pk', pk);
+        fields.append('PRINT', '');
+        /*sendToServer(url = "
+
+
+
+
+
+        {{ url_list }}", data = fields, method = 'POST', returntype = 2)
+            .then(data => {
+                fn_generateDownloadPdf(data, "
+
+
+
+
+
+        {{ page_title }}")
+            });*/
+        sendToServer(url = "{{ url_list }}", data = fields, method = 'POST', returntype = 3)
+            .then(data => {
+                name = data.name;
+                return data.blob
+            }).then(data2 => {
+            fn_generateDownloadPdf(data2, name);
+        });
+    }
+</script>
+<script src="{% static 'js/administracion/adm_0001.js' %}"></script>
+<script>
+
+    $(function () {
+        // carga  los datos en las tablas
+        initTables();
+
+    });
+
+</script>
+
+
+//
+{% block bodyFooterScriptsList %}
+
+{% endblock %}
+{% endblock %}
+

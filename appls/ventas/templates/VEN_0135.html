@@ -1,0 +1,322 @@
+{% extends 'body.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load erp_tags %}
+
+{% block headScripts %}
+<!-- DataTables & Plugins -->
+<link rel="stylesheet" href="{% static 'css/ventas/ven_0135.css' %}">
+<!--<link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/select/css/select2.min.css' %}">-->
+
+{% block headScriptsList %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title"><b>{{ titulo }}</b></h3>
+        <div class="card-tools">
+            <!-- BOTONES -->
+            <button id="saveChanges" class="btn btn-primary"><i class="fa fa-save"></i> Aplicar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelButton">
+                <i class="fa fa-times"></i> Cancelar
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<div class="card card-primary card-outline card-outline-tabs">
+    <form>
+        <div class="d-flex justify-content-between">
+            <!-- Sección 1 -->
+            <div class="section">
+                <div class="form-group">
+                    <label for="fechaEminicion">Fecha Emision</label>
+                    <input type="datetime-local" class="form-control" id="fechaEminicion" placeholder="Fecha Eminicion">
+                    <label for="modena">Moneda </label>
+                    <input type="text" class="form-control" id="modena" placeholder="Moneda">
+                    <label for="zona">Zona </label>
+                    <input type="text" class="form-control" id="zona" placeholder="Zona">
+                </div>
+                <div class="form-group">
+                    <label for="cod_agente">Agente:</label>
+                    <input type="text" class="form-control" id="cod_agente" placeholder="co_agente">
+                    <button type="button" class="btn btn-block btn-icon bg-gradient-secondary btn-xs" id="btnAgentes"><i
+                            class="fas fa-window-maximize"></i></button>
+                    <input type="text" class="form-control" id="nombreAgente" placeholder="nombre agente">
+                </div>
+                <div class="form-group">
+                    <label for="indentificacion">CL/RUC:</label>
+                    <input type="text" class="form-control" id="indentificacion" placeholder="indentificacion">
+                    <button type="button" class="btn btn-block btn-icon bg-gradient-secondary btn-xs" id="btnBuscarClientes"><i
+                            class="fas fa-window-maximize"></i></button>
+                    <input type="text" class="form-control" id="cod_cliente" placeholder="cod_cliente">
+                    <select name="LV_COD_IDENTIFICACION" id="LV_COD_IDENTIFICACION" class="">
+                        <option value="1">opcion1</option>
+                        <option value="2">opcion2</option>
+
+                    </select>
+                    <select name="cod_tipo_persona" id="cod_tipo_persona">
+                        <option value="Nat">Natural</option>
+                        <option value="JUR">Juridica</option>
+
+                    </select>
+
+                </div>
+                <div class="form-group">
+                    <label for="nombreCliente">Razon Social:</label>
+                    <input type="text" class="form-control" id="nombreCliente" placeholder="Nombre Cliente">
+
+                </div>
+                <div class="form-group">
+                    <label for="LV_CATEGORIA">Categoria:</label>
+                    <input type="text" class="form-control" id="LV_CATEGORIA" placeholder="Categoria">
+                    <label for="LN_CUPO">Cupo:</label>
+                    <input type="text" class="form-control" id="LN_CUPO" placeholder="cupo">
+
+                </div>
+                <div class="form-group">
+                    <label for="LV_TIPO_PRECIO">Tipo de Precio:</label>
+                    <input type="text" class="form-control" id="LV_TIPO_PRECIO" placeholder="Tipo de Precio">
+                    <label for="LV_NEGOCIACION">Negociacion:</label>
+                    <input type="text" class="form-control" id="LV_NEGOCIACION" placeholder="Negociacion">
+
+                </div>
+                <div class="form-group">
+                    <label for="LN_CUPO_DISPONIBLE">Cupo Disponible:</label>
+                    <input type="text" class="form-control" id="LN_CUPO_DISPONIBLE" placeholder="Cupo Disponible">
+                    <label for="LN_PLAZO">Plazo:</label>
+                    <input type="text" class="form-control" id="LN_PLAZO" placeholder="Plazo">
+
+                </div>
+                <div class="form-group">
+                    <label for="LN_SALDO_CLIENTE">Saldo Facturas:</label>
+                    <input type="text" class="form-control" id="LN_SALDO_CLIENTE" placeholder=" Saldo Cliente">
+                    <label for="LN_ANTICIPOS_PENDIENTES">Anticipos:</label>
+                    <input type="text" class="form-control" id="LN_ANTICIPOS_PENDIENTES" placeholder="Plazo">
+
+                </div>
+                <div class="form-group">
+                    <label for="COD_ESTABLECIMIENTO">Establecimientos:</label>
+                    <input type="text" class="form-control" id="COD_ESTABLECIMIENTO" placeholder="cod_establecimiento">
+                    <input type="text" class="form-control" id="COD_PUNTO_VENTA" placeholder="cod_punto_venta">
+
+                    <label for="NRO_AUTORIZACION">#Autoriz:</label>
+                    <input type="text" class="form-control" id="NRO_AUTORIZACION" placeholder="Plazo">
+
+                </div>
+
+            </div>
+            <!-- Sección 2 -->
+            <div class="section">
+                <div class="form-group">
+                    <label for="SECUENCIA_DIRECCION">Direccion: </label>
+                    <input type="text" class="form-control" id="SECUENCIA_DIRECCION" placeholder="SECUENCIA_DIRECCION">
+                    <input type="text" class="form-control" id="LV_NOM_SECUENCIA_DIRECCION"
+                           placeholder="Nombre Secuencia ">
+
+                </div>
+                <div class="form-group">
+                    <label for="cod_pais">Pais: </label>
+                    <input type="text" class="form-control" id="cod_pais" placeholder="cod Pais">
+                    <button type="button" class="btn btn-block btn-icon bg-gradient-secondary btn-xs" id="btnPaises"><i
+                            class="fas fa-window-maximize"></i></button>
+                    <input type="text" class="form-control" id="nombre_pais" placeholder="Nombre Pais">
+                    <label for="cod_lugar">Lugar: </label>
+                    <input type="text" class="form-control" id="cod_lugar" placeholder="cod Lugar">
+                    <button type="button" class="btn btn-block btn-icon bg-gradient-secondary btn-xs"><i
+                            class="fas fa-window-maximize"></i></button>
+                    <input type="text" class="form-control" id="lugar" placeholder="Lugar">
+
+
+                </div>
+                <div class="form-group">
+                    <label for="calle">Calle: </label>
+                    <input type="text" class="form-control" id="calle" placeholder="calle">
+                    <label for="NRO">#: </label>
+                    <input type="text" class="form-control" id="NRO" placeholder="NUMERO">
+                    <label for="INTERSECCION">Inters: </label>
+                    <input type="text" class="form-control" id="INTERSECCION" placeholder="Interseccion">
+                </div>
+                <div class="form-group">
+                    <label for="SECUENCIA_TELEFONO">Telefono: </label>
+                    <input type="text" class="form-control" id="SECUENCIA_TELEFONO" placeholder="Telefono">
+                    <button type="button" class="btn btn-block btn-icon bg-gradient-secondary btn-xs"><i
+                            class="fas fa-window-maximize"></i></button>
+                    <input type="text" class="form-control" id="LV_NOM_SECUENCIA_TELEFONO" placeholder="Telefono">
+                    <select name="LV_COD_TELEFONO" id="LV_COD_TELEFONO">
+                        <option value="1">cod_telefono1</option>
+                        <option value="1">cod_telefono2</option>
+                    </select>
+                    <label for="TELEFONO">Nro: </label>
+                    <input type="text" class="form-control" id="TELEFONO" placeholder="Telefono">
+
+                </div>
+                <div class="form-group">
+                    <label for="SECUENCIA_CORREO">Correo: </label>
+                    <input type="text" class="form-control" id="SECUENCIA_CORREO" placeholder="Secuencia correo">
+                    <button type="button" class="btn btn-block btn-icon bg-gradient-secondary btn-xs"><i
+                            class="fas fa-window-maximize"></i></button>
+                    <input type="text" class="form-control" id="LV_NOM_SECUENCIA_CORREO" placeholder="Correo">
+
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail: </label>
+                    <input type="email" class="form-control" id="email" placeholder="Email">
+                </div>
+
+
+                <div class="form-container">
+                    <label>Negociacion Actual:</label>
+                    <div class="form-group">
+                        <label for="COD_TIPO_NEGOCIACION">Negocio: </label>
+                        <select name="COD_TIPO_NEGOCIACION" id="COD_TIPO_NEGOCIACION">
+                            <option value="1">tipo1</option>
+                            <option value="2">tipo2</option>
+                        </select>
+                        <label for="plazodias">Plazo Dias: </label>
+                        <input type="text" class="form-control" id="plazodias" placeholder="Plazo Dias">
+                        <button type="button" class="btn btn-block btn-proformas bg-gradient-secondary btn-xs">
+                            <i class="fas fa-file-invoice"></i> Proformas
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <label for="COD_TIPO_PRECIO">Tipo Precio: </label>
+                        <select name="COD_TIPO_PRECIO" id="COD_TIPO_PRECIO">
+                            <option value="1">tipo1</option>
+                            <option value="2">tipo2</option>
+                        </select>
+                        <label for="NRO_CUOTAS"># Cuotas: </label>
+                        <input type="text" class="form-control" id="NRO_CUOTAS" placeholder="Nro Cuotas">
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+
+        </div>
+    </form>
+</div>
+
+
+<!--<div class="modal fade" id="modal-agentes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"-->
+<!--     aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-agentes" role="document">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="exampleModalLabel"></h5>-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+
+<!--                <div id="modal-content"></div>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button id="modalAcceptButton" type="button" class="btn btn-primary">Aceptar</button>-->
+<!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+
+<!--<div class="modal fade" id="modalDatos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"-->
+<!--     aria-hidden="true">-->
+<!--    <div class="modal-dialog modalDatos" role="document">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="exampleModalLabel"></h5>-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+
+<!--                <div id="modal-content"></div>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button id="modalAcceptButton" type="button" class="btn btn-primary">Aceptar</button>-->
+<!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="modal fade" id="modalDatos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document"> <!-- Ajustado para tamaño pequeño -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="modal-content" class="table-responsive"></div> <!-- Añadido table-responsive -->
+            </div>
+            <div class="modal-footer">
+                <button id="modalAcceptButton" type="button" class="btn btn-primary">Aceptar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-custom-width" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Buscar Clientes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body p-0">
+                <iframe id="modalIframe" src="" style="width:100%; height:85vh; border:none;"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% block contentList %}{% endblock %}
+{% endblock %}
+
+{% block bodyFooterScripts %}
+<script>
+    var buscarEntidadesClientesUrl = "{% url 'ventas:buscar-entidades-clientes' %}";
+</script>
+<script>
+
+    window.addEventListener('message', function (event) {
+
+        if (event.data && event.data.codPersona) {
+            codPersonaSeleccionadoCre_0020 = event.data.codPersona;
+            // console.log('Recibido codPersonaSeleccionadoCre_0020:', codPersonaSeleccionadoCre_0020);
+            $('#myModal').modal('hide');
+            if (codPersonaSeleccionadoCre_0020 !== null) {
+               // datosCliente(codPersonaSeleccionadoCre_0020);
+               console.log('Recibido codPersonaSeleccionadoCre_0020:', codPersonaSeleccionadoCre_0020);
+            }
+        }
+    });
+
+
+</script>
+
+
+
+<script src="{% static 'js/ventas/ven_0135.js' %}"></script>
+<!--<script src="{% static 'lib/adminlte-3.0.4/plugins/select/js/select2.min.js' %}"></script>-->
+{% block bodyFooterScriptsList %}{% endblock %}
+{% endblock %}
+
+

@@ -1,0 +1,335 @@
+{% load static %}
+{% load erp_tags %}
+
+<!-- Navbar -->
+<nav class="main-header navbar navbar-expand navbar-dark">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+    </ul>
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+        <!-- Full screen -->
+        <li class="nav-item ">
+            <button type="button" class="btn btn-dark btn-sm">
+                <span class="fas fa-receipt"></span>
+                {# Ambiente: {{ request.session.AIGN_AMBIENTE }}#}
+                {% if request.session.AIGN_AMBIENTE == 'Pruebas' %}
+                Ambiente: <span style="color: red;">{{ request.session.AIGN_AMBIENTE }}</span>
+                {% else %}
+                {{ request.session.AIGN_AMBIENTE }}
+                {% endif %}
+            </button>
+        </li>
+        <li class="nav-item ">
+            <button type="button" class="btn btn-dark btn-sm">
+                <span class="fas fa-hand-holding-usd"></span>
+                {{ request.session.AIGN_PEM_NOMBRE }}
+            </button>
+        </li>
+        <li class="nav-item ">
+            <button type="button" class="btn btn-dark btn-sm">
+                <span class="fas fa-store"></span>
+                {{ request.session.AIGN_SUC_NOMBRE }}
+            </button>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                <i class="fas fa-expand-arrows-alt"></i>
+            </a>
+        </li>
+        <!-- Notifications Dropdown Menu -->
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <i class="far fa-bell"></i>
+                <span class="badge badge-warning navbar-badge">15</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <span class="dropdown-item dropdown-header">15 Notifications</span>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item">
+                    <i class="fas fa-envelope mr-2"></i> 4 new messages
+                    <span class="float-right text-muted text-sm">3 mins</span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+            </div>
+        </li>
+        <!-- Messages Dropdown Menu -->
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <span class="fa fa-user-circle"></span> Bienvenido <b>
+                {% if request.user.usu_nombres %}
+                {{ request.user.usu_nombres }}
+                {% else %}
+                {{ request.user.username }}
+                {% endif %}
+            </b>
+                <i class="fas fa-chevron-down"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <a href="#" class="dropdown-item">
+                    <!-- Message Start -->
+                    <div class="media">
+                        <img src="{% media 'img/sys/yo6.jpg' %}" alt="User Avatar"
+                             class="img-size-50 mr-3 img-circle">
+
+                        <div class="media-body">
+                            <h3 class="dropdown-item-title">
+                                Mi perfil
+                                <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                            </h3>
+                            <p class="text-sm">
+                                {% if request.user.usu_nombres %}
+                                {{ request.user.usu_nombres }} {{ request.user.usu_apellidos }}
+                                {% else %}
+                                {{ request.user.username }}
+                                {% endif %}
+                            </p>
+                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                        </div>
+                    </div>
+                    <!-- Message End -->
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="{% url 'logout' %}" class="dropdown-item dropdown-footer">
+                    <!-- Message Start -->
+                    <div class="media">
+                        <div class="media-body">
+                            <h3 class="dropdown-item-title">
+                                <span class="float-right text-sm text-danger"><i class="fas fa-sign-out-alt"></i></span>
+                                <b>Cerrar sesión</b>
+                            </h3>
+                        </div>
+                    </div>
+                    <!-- Message End -->
+                </a>
+            </div>
+        </li>
+    </ul>
+</nav>
+<!-- /.navbar -->
+
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #28568c">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+        <img src="{% media 'img/sys/imgAbel.png' %}" alt="Insoft Logo"
+             class="brand-image">
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- SidebarSearch Form -->
+        <div class="form-inline" style="background-color: #28568c">
+            <div class="input-group" data-widget="sidebar-search">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Buscar"
+                       aria-label="Search" style="background-color: #28568c">
+                <div class="input-group-append">
+                    <button class="btn btn-sidebar" style="background-color: #28568c">
+                        <i class="fas fa-search fa-fw"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+
+        <!--        <nav class="mt-2">-->
+        <!--            <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent nav-compact nav-legacy"-->
+        <!--                data-widget="treeview"-->
+        <!--                role="menu"-->
+        <!--                data-accordion="false">-->
+        <!--                &lt;!&ndash; Add icons to the links using the .nav-icon class with font-awesome or any other icon font library &ndash;&gt;-->
+
+        <!--                {% for modulo, data in request.session.AIGN_OPCIONES.items %}-->
+        <!--                <li class="nav-item">-->
+        <!--                    <a href="#" class="nav-link">-->
+        <!--                        <i class="fa-solid fas fa-layer-group" style="color: #63E6BE;"></i>-->
+        <!--                        &lt;!&ndash; Ícono estático para módulos &ndash;&gt;-->
+        <!--                        <p>-->
+        <!--                            {{ data.nombre_modulo }}-->
+        <!--                            <i class="right fas fa-angle-left"></i>-->
+        <!--                        </p>-->
+        <!--                    </a>-->
+        <!--                    <ul class="nav nav-treeview">-->
+        <!--                        {% for obj in data.opciones %}-->
+        <!--                        {% if obj.cod_opcion_padre == None %}-->
+        <!--                        <li class="nav-item">-->
+        <!--                            <a href="#" class="nav-link">-->
+        <!--                                <i class="fa-solid  fas fa-folder fa-2xs" style="color: #F4A261;"></i>-->
+        <!--                                &lt;!&ndash; Ícono estático para el primer nivel de opciones &ndash;&gt;-->
+        <!--                                <p>-->
+        <!--                                    {{ obj.nombre }}-->
+        <!--                                    <i class="right fas fa-angle-left"></i>-->
+        <!--                                </p>-->
+        <!--                            </a>-->
+        <!--                            <ul class="nav nav-treeview">-->
+
+        <!--                                {% for obj_menu in data.opciones %}-->
+        <!--                                {% if obj_menu.cod_opcion_padre == obj.cod_opcion %}-->
+        <!--                                {% if obj_menu.es_ultimo_nivel == 1 %}-->
+        <!--                                <li class="nav-item">-->
+        <!--                                    <a href="{{ obj_menu.url }}" class="nav-link">-->
+        <!--                                        <i class="fa-solid fas fa-circle fa-2xs" style="color: #eacc62;"></i>-->
+
+
+        <!--                                        &lt;!&ndash; Ícono estático para el último nivel &ndash;&gt;-->
+        <!--                                        <p>{{ obj_menu.nombre }}</p>-->
+        <!--                                    </a>-->
+        <!--                                </li>-->
+        <!--                                {% else %}-->
+        <!--                                <li class="nav-item">-->
+        <!--                                    <a href="#" class="nav-link">-->
+        <!--                                        <i class="fa-regular fas fa-folder-open fa-2xs" style="color: #E9C46A ;"></i>-->
+
+        <!--                                        &lt;!&ndash; Ícono estático para el segundo nivel &ndash;&gt;-->
+        <!--                                        <p>-->
+        <!--                                            {{ obj_menu.nombre }}-->
+        <!--                                            <i class="right fas fa-angle-left"></i>-->
+        <!--                                        </p>-->
+        <!--                                    </a>-->
+        <!--                                    <ul class="nav nav-treeview">-->
+        <!--                                        {% for obj_opc in data.opciones %}-->
+        <!--                                        {% if obj_opc.cod_opcion_padre == obj_menu.cod_opcion %}-->
+        <!--                                        {% if obj_opc.nivel == 3 %}-->
+        <!--                                        <li class="nav-item">-->
+        <!--                                            <a href="{{ obj_opc.url }}" class="nav-link">-->
+        <!--                                                <i class="fa-solid fas fa-ellipsis-h" style="color: #ee95c5;"></i>-->
+
+        <!--                                                &lt;!&ndash; Ícono estático para el tercer nivel &ndash;&gt;-->
+        <!--                                                <p>{{ obj_opc.nombre }}</p>-->
+        <!--                                            </a>-->
+        <!--                                        </li>-->
+        <!--                                        {% elif obj_opc.nivel == 4 %}-->
+        <!--                                        <li class="nav-item">-->
+        <!--                                            <a href="{{ obj_opc.url }}" class="nav-link">-->
+        <!--                                                <i class="nav-icon fas fa-file"></i>-->
+        <!--                                                &lt;!&ndash; Ícono estático para el cuarto nivel &ndash;&gt;-->
+        <!--                                                <p>{{ obj_opc.nombre }}</p>-->
+        <!--                                            </a>-->
+        <!--                                        </li>-->
+        <!--                                        {% elif obj_opc.nivel == 5 %}-->
+        <!--                                        <li class="nav-item">-->
+        <!--                                            <a href="{{ obj_opc.url }}" class="nav-link">-->
+        <!--                                                <i class="nav-icon fas fa-list"></i>-->
+        <!--                                                &lt;!&ndash; Ícono estático para el quinto nivel &ndash;&gt;-->
+        <!--                                                <p>{{ obj_opc.nombre }}</p>-->
+        <!--                                            </a>-->
+        <!--                                        </li>-->
+        <!--                                        {% else %}-->
+        <!--                                        <li class="nav-item">-->
+        <!--                                            <a href="#" class="nav-link">-->
+        <!--                                                <i class="nav-icon fas fa-ellipsis-h"></i>-->
+        <!--                                                &lt;!&ndash; Ícono por defecto para niveles adicionales &ndash;&gt;-->
+        <!--                                                <p>{{ obj_opc.nombre }}</p>-->
+        <!--                                            </a>-->
+        <!--                                        </li>-->
+        <!--                                        {% endif %}-->
+        <!--                                        {% endif %}-->
+        <!--                                        {% endfor %}-->
+        <!--                                    </ul>-->
+        <!--                                </li>-->
+        <!--                                {% endif %}-->
+        <!--                                {% endif %}-->
+        <!--                                {% endfor %}-->
+        <!--                            </ul>-->
+        <!--                        </li>-->
+        <!--                        {% endif %}-->
+        <!--                        {% endfor %}-->
+        <!--                    </ul>-->
+        <!--                </li>-->
+        <!--                {% endfor %}-->
+
+        <!--            </ul>-->
+        <!--        </nav>-->
+
+
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent nav-compact nav-legacy"
+                data-widget="treeview"
+                role="menu"
+                data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+
+                {% for cod_modulo, modulo in request.session.AIGN_OPCIONES.items %}
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fas fa-layer-group" style="color: #63E6BE;"></i>
+                        <!-- Ícono estático para módulos -->
+                        <p>
+                            {{ modulo.nombre_modulo }}
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        {% for opcion in modulo.opciones %}
+                        <li class="nav-item">
+                            <a href="{% if opcion.subopciones|length == 0 %}{{ opcion.url }}{% else %}#{% endif %}"
+                               class="nav-link">
+                                {% if opcion.subopciones|length == 0 %}
+                                <i class="fa-solid fas fa-circle fa-2xs" style="color: #eacc62;"></i>
+                                <!-- Ícono para el último nivel -->
+                                {% else %}
+                                <i class="fa-solid fas fa-folder fa-2xs" style="color: #F4A261;"></i>
+                                <!-- Ícono para niveles intermedios -->
+                                {% endif %}
+                                <p>
+                                    {{ opcion.nombre }}
+                                    {% if opcion.subopciones|length > 0 %}
+                                    <i class="right fas fa-angle-left"></i>
+                                    {% endif %}
+                                </p>
+                            </a>
+                            {% if opcion.subopciones|length > 0 %}
+                            <ul class="nav nav-treeview">
+                                {% for subopcion in opcion.subopciones %}
+                                <li class="nav-item">
+                                    <a href="{% if subopcion.subopciones|length == 0 %}{{ subopcion.url }}{% else %}#{% endif %}"
+                                       class="nav-link">
+                                        {% if subopcion.subopciones|length == 0 %}
+                                        <i class="fa-solid fas fa-circle fa-2xs" style="color: #eacc62;"></i>
+                                        <!-- Ícono para el último nivel -->
+                                        {% else %}
+                                        <i class="fa-solid fas fa-folder fa-2xs" style="color: #F4A261;"></i>
+                                        <!-- Ícono para niveles intermedios -->
+                                        {% endif %}
+                                        <p>
+                                            {{ subopcion.nombre }}
+                                            {% if subopcion.subopciones|length > 0 %}
+                                            <i class="right fas fa-angle-left"></i>
+                                            {% endif %}
+                                        </p>
+                                    </a>
+                                    {% if subopcion.subopciones|length > 0 %}
+                                    <ul class="nav nav-treeview">
+                                        {% for subsubopcion in subopcion.subopciones %}
+                                        <li class="nav-item">
+                                            <a href="{{ subsubopcion.url }}" class="nav-link">
+                                                <i class="fa-solid fas fa-ellipsis-h" style="color: #ee95c5;"></i>
+                                                <!-- Ícono para niveles adicionales -->
+                                                <p>{{ subsubopcion.nombre }}</p>
+                                            </a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+
+
+    </div>
+    <!-- /.sidebar -->
+</aside>
+

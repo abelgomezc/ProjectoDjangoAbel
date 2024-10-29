@@ -1,0 +1,210 @@
+{% extends 'body.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% load erp_tags %}
+
+{% block headScripts %}
+<!-- DataTables  & Plugins -->
+<link rel="stylesheet"
+      href="{% static 'lib/adminlte-3.0.4/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
+<link rel="stylesheet"
+      href="{% static 'lib/adminlte-3.0.4/plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+<link rel="stylesheet"
+      href="{% static 'lib/adminlte-3.0.4/plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
+
+<link rel="stylesheet"
+      href="{% static 'lib/adminlte-3.0.4/js/datatable_spanish.json' %}">
+
+<link rel="stylesheet"
+      href="{% static 'css/administracion/adm_0018.css' %}">
+
+{% block headScriptsList %}
+{% endblock %}
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title"><b>{{ titulo }}</b></h3>
+        <div class="card-tools">
+            {# BOTONES #}
+            <button id="saveChanges" class="btn btn-primary"><i class="fa fa-save"></i> Aplicar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelButton"><i
+                    class="fa fa-times"></i> Cancelar
+            </button>
+
+        </div>
+    </div>
+
+    <div class="card card-primary card-outline">
+
+        <div class="card-body">
+
+            <table id="TablaPantallas"
+                   class="table table-sm table-hover table-bordered table-striped dataTable dtr-inline">
+                <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Ruta</th>
+                    <th>Manual Progreso</th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <button id="addRowPantallas" class="btn btn-primary"><i class="fa fa-plus"></i></button>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+{% block contentList %}
+{% endblock %}
+{% endblock %}
+
+{% block bodyFooterScripts %}
+<!-- Toastr messages -->
+<link rel="stylesheet" type="text/css" href="{% static 'lib/adminlte-3.0.4/plugins/toastr/toastr.css' %}"
+      media="all">
+<script type="text/javascript" src="{% static 'lib/adminlte-3.0.4/plugins/toastr/toastr.min.js' %}"></script>
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == 'success' %}
+<script type=text/javascript>toastr.
+{
+    {
+        message.tags
+    }
+}
+('{{ message }}')</script>
+{% elif message.tags == 'info' %}
+<script type=text/javascript>toastr.
+{
+    {
+        message.tags
+    }
+}
+('{{ message }}')</script>
+{% elif message.tags == 'warning' %}
+<script type=text/javascript>toastr.
+{
+    {
+        message.tags
+    }
+}
+('{{ message }}')</script>
+{% elif message.tags == 'error' %}
+<script type=text/javascript>toastr.
+{
+    {
+        message.tags
+    }
+}
+('{{ message }}')</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<!-- DataTables  & Plugins -->
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/jszip/jszip.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/pdfmake/vfs_fonts.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+<script src="{% static 'json/adminlte.js' %}" type="text/javascript"></script>
+<script type="application/javascript">
+    $(document).ready(function () {
+
+        table_opts = {
+        {
+            datatable_opts | js
+        }
+    }
+        ;
+        table_opts['language'] = table_es;
+        if (table_opts.drawCallback != null) {
+            eval("table_opts.drawCallback=" + fn_drawCallback);
+        }
+        $("#{{ datatable_id }}").DataTable(table_opts);
+    });
+</script>
+<!-- Print method -->
+<script src="{% static 'js/util_dev.js' %}"></script>
+
+
+{% csrf_token %}
+
+<script type="text/javascript">
+    //btnDownload_id
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    //download specific report with pk
+    // funciona solo para listas en donde se necesite un reporte con una llave primaria
+    // se mostrara en la segunda columna dela fila
+    function downloadReport(pk) {
+        fields = new FormData();
+        fields.append('pk', pk);
+        fields.append('PRINT', '');
+        /*sendToServer(url = "
+
+
+
+
+
+        {{ url_list }}", data = fields, method = 'POST', returntype = 2)
+            .then(data => {
+                fn_generateDownloadPdf(data, "
+
+
+
+
+
+        {{ page_title }}")
+            });*/
+        sendToServer(url = "{{ url_list }}", data = fields, method = 'POST', returntype = 3)
+            .then(data => {
+                name = data.name;
+                return data.blob
+            }).then(data2 => {
+            fn_generateDownloadPdf(data2, name);
+        });
+    }
+</script>
+<script src="{% static 'js/administracion/adm_0018.js' %}"></script>
+<script>
+
+    $(function () {
+        // carga  los datos en las tablas
+        initTables();
+
+    });
+
+</script>
+
+
+//
+{% block bodyFooterScriptsList %}
+
+{% endblock %}
+{% endblock %}
+

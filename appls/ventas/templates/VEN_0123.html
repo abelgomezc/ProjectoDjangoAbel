@@ -1,0 +1,458 @@
+{% extends 'body.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load erp_tags %}
+
+{% block headScripts %}
+<!-- DataTables & Plugins -->
+<link rel="stylesheet" href="{% static 'css/ventas/ven_0123.css' %}">
+<link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/select/css/select2.min.css' %}">
+
+{% block headScriptsList %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+
+
+<div class="card card-primary card-outline ">
+    <h5 class="card-title text-center"><b>{{ titulo }}</b></h5>
+    <div class="card-body">
+        <form id="form_cabezera">
+            <div class="d-flex justify-content-between">
+                <!-- Sección 1 -->
+                <div class="section">
+                    <div class="form-group">
+
+                        <label for="cod_comprobante">Comprob.: </label>
+                        <input type="text" class="form-control codpequenos-input" id="cod_comprobante"
+                               placeholder="Cod_Comprobante">
+                        <input type="text" class="form-control small-input" id="nro_cod_comprobante"
+                               placeholder="nro_cod_comprobante">
+                        <label for="fechaEmision">Fecha:</label>
+                        <input type="datetime-local" class="form-control fecha-input " id="fechaEmision"
+                               placeholder="Fecha Emision">
+                        <label for="cod_moneda">Moneda :</label>
+                        <input type="text" class="form-control codpequenos-input" id="cod_moneda" placeholder="Moneda">
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for="cod_agente">Agente:</label>
+                        <input type="text" class="form-control small-input" id="cod_agente" placeholder="co_agente">
+                        <button type="button" class="btn btn-block btn-icon bg-gradient-secondary btn-xs"
+                                id="btnAgentes"><i
+                                class="fas fa-window-maximize"></i></button>
+                        <input type="text" class="form-control full-width-input " id="nombre_agente"
+                               placeholder="nombre agente">
+                        <label for="cod_zona">Zona: </label>
+                        <input type="text" class="form-control codpequenos-input" id="cod_zona" placeholder="Zona">
+                    </div>
+                    <div class="form-group">
+                        <label for="identificacion">CL/RUC:</label>
+                        <input type="text" class="form-control small_Indetif-input" id="identificacion"
+                               placeholder="identificacion">
+                        <button type="button" class="btn btn-block btn-icon bg-gradient-secondary btn-xs"><i
+                                class="fas fa-window-maximize" id="btnBuscarClientes"></i></button>
+                        <input type="text" class="form-control small-input" id="cod_cliente" placeholder="cod_cliente"
+                               disabled>
+
+                        <select name="LV_COD_IDENTIFICACION" id="LV_COD_IDENTIFICACION"
+                                class="form-control select-control small_Indetif-input" disabled>
+
+                        </select>
+
+                        <select name="cod_tipo_persona" id="cod_tipo_persona"
+                                class="form-control select-control small_Indetif-input" disabled>
+                            <option value="NAT">Natural</option>
+                            <option value="JUR">Juridica</option>
+
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre_cliente">Nombre:</label>
+                        <input type="text" class="form-control full-width-input" id="nombre_cliente"
+                               placeholder="Nombre Cliente">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lv_categoria">Categoria:</label>
+                        <input type="text" class="form-control large-input" id="lv_categoria" placeholder="Categoria">
+                        <label for="lv_nom_negociacion_cliente">Negociacion Cliente:</label>
+                        <input type="text" class="form-control full-width-input " id="lv_nom_negociacion_cliente"
+                               placeholder="Nombre_negociacion_cliente">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="ln_saldo_vencido">Sal. Venc.:</label>
+                        <input type="text" class="form-control medium-input" id="ln_saldo_vencido"
+                               placeholder="Saldo Vencido">
+                        <label for="ln_cupo">Cupo Disponible:</label>
+                        <input type="text" class="form-control small-input" id="ln_cupo" placeholder="cupo">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="LV_NEGOCIACION">Negociacion:</label>
+                        <select name="cod_tipo_persona" id="LV_NEGOCIACION"
+                                class="form-control select-control negoci-select">
+                            <option value="1">op1</option>
+                            <option value="2">op1</option>
+
+                        </select>
+                        <label for="plazo_dias">Plazo Dias:</label>
+                        <input type="text" class="form-control small-input" id="plazo_dias" placeholder="Plazo Dias">
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for="ln_plazo">Plazo Cliente: </label>
+                        <input type="text" class="form-control small-input" id="ln_plazo" placeholder="Plazo Cliente">
+                        <label for="nro_cuotas"># Cuotas:</label>
+                        <input type="text" class="form-control small-input" id="nro_cuotas" placeholder="nro_cuotas">
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for="observaciones">Observaciones Bodega:</label>
+                        <textarea class="form-control full-width-input " id="observaciones"
+                                  placeholder="Ingrese observaciones aquí"
+                                  rows="2"></textarea>
+
+                    </div>
+
+                </div>
+                <!-- Sección 2-->
+                <div class="section">
+                    <div class="form-group">
+                        <label for="secuencia_direccion">Direccion: </label>
+                        <input type="text" class="form-control codpequenos-input" id="secuencia_direccion"
+                               placeholder="secuencia_direccion">
+                        <button type="button" class="btn btn-block btn-icon bg-gradient-secondary btn-xs"
+                                id="btnDireccion">
+                            <i
+                                    class="fas fa-window-maximize"></i></button>
+                        <input type="text" class="form-control full-width-input" id="lv_direccion"
+                               placeholder="Nombre Secuencia ">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="cod_pais">Pais: </label>
+                        <input type="text" class="form-control codpequenos-input" id="cod_pais" placeholder="cod Pais">
+
+                        <select class=" form-control select-control medium-input" name="state" id="selectPais"></select>
+                        <label for="cod_lugar">Lugar: </label>
+                        <input type="text" class="form-control small-input" id="cod_lugar" placeholder="cod Lugar">
+                        <select class="form-control full-width-input" name="state" id="selectLugar"></select>
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for="calle">Calle: </label>
+                        <input type="text" class="form-control medium-input" id="calle" placeholder="calle">
+                        <label for="NRO">#: </label>
+                        <input type="text" class="form-control codpequenos-input" id="NRO" placeholder="NUMERO">
+                        <label for="interseccion">Inters: </label>
+                        <input type="text" class="form-control full-width-input" id="interseccion"
+                               placeholder="Interseccion">
+                    </div>
+                    <div class="form-group">
+                        <label for="secuencia_telefono">Telefono: </label>
+                        <input type="text" class="form-control codpequenos-input" id="secuencia_telefono"
+                               placeholder="secuencia Telefono">
+                        <button type="button" class="btn btn-block btn-icon bg-gradient-secondary btn-xs"
+                                id="rg_telefonos"><i
+                                class="fas fa-window-maximize"></i></button>
+                        <input type="text" class="form-control small-input" id="lv_nom_secuencia_telefono"
+                               placeholder="secuencia nom telefono">
+                        <select name="LV_COD_TELEFONO" id="LV_COD_TELEFONO"
+                                class="form-control select-control tipotelef-input">
+
+                        </select>
+                        <label for="telefono">Nro: </label>
+                        <input type="tel" class="form-control full-width-input " id="telefono" placeholder="Telefono">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="secuencia_correo">Correo: </label>
+                        <input type="text" class="form-control codpequenos-input" id="secuencia_correo"
+                               placeholder="Secuencia correo">
+                        <button type="button" class="btn btn-block btn-icon bg-gradient-secondary btn-xs"
+                                id="rg_correos"><i
+                                class="fas fa-window-maximize"></i></button>
+                        <input type="text" class="form-control medium-input" id="LV_NOM_SECUENCIA_CORREO"
+                               placeholder="Correo">
+                        <label for="email">E-mail: </label>
+                        <input type="email" class="form-control full-width-input" id="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="cod_coordinador">Coordinad.: </label>
+                        <input type="text" class="form-control small-input" id="cod_coordinador"
+                               placeholder="Codigo Coordinador">
+                        <button type="button" class="btn btn-block btn-icon bg-gradient-secondary btn-xs"
+                                id="rg_coordinadores"><i
+                                class="fas fa-window-maximize"></i></button>
+
+                        <label for="descripcion">Descripcion: </label>
+                        <textarea class="form-control full-width-input " id="descripcion"
+                                  placeholder="Ingrese una Descripcion aquí"
+                                  rows="2"></textarea>
+
+                    </div>
+                    <div class="form-container">
+                        <div class="form-group">
+                            <label for="ln_anticipos_cliente">Anticipos: </label>
+                            <input type="text" class="form-control small-input" id="ln_anticipos_cliente"
+                                   placeholder="ANTICIPOS_CLIENTE">
+                        </div>
+                        <div class="form-group">
+                            <label for="ln_saldos_cliente">Pendiente: </label>
+                            <input type="text" class="form-control small-input" id="ln_saldos_cliente"
+                                   placeholder="SALDOS_CLIENTE ">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+<!--modales dela  cabezera  -->
+<div class="modal fade" id="modalDatos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document"> <!-- Ajustado para tamaño pequeño -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCerrarModalPersonas">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="modal-content" class="table-responsive"></div> <!-- Añadido table-responsive -->
+            </div>
+            <div class="modal-footer">
+                <button id="modalAcceptButton" type="button" class="btn btn-primary">Aceptar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal de Detalle -->
+<div class="modal fade" id="modalDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document"> <!-- Cambiado a modal-lg para mayor flexibilidad -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titulo">Listado de Items</h5> <!-- Título dinámico -->
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCerrarModal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-bodyDetalle">
+                <div id="modal-content_Detalle" class="table-responsive">
+                    <!-- Aquí se insertará la tabla generada por DataTables -->
+                </div> <!-- Fin del div table-responsive -->
+            </div>
+            <div class="modal-footer">
+                <button id="btnModalAccept" type="button" class="btn btn-primary">Aceptar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--tabla de itemes -->
+
+
+<!--tabla de itemes -->
+
+<button id="addRowItem" class="btn btn-primary"><i class="fa fa-plus"></i></button>
+<div class="card card-primary card-outline">
+    <div class="">
+        <!-- Contenedor con scroll -->
+        <div style="max-height: 500px; overflow-y: auto;">
+
+            <table id="TablaDetalle"
+                   class="table table-sm table-hover table-bordered table-striped dataTable dtr-inline">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Item</th>
+                    <th>Unidad</th>
+                    <th></th>
+                    <th>Bodega</th>
+                    <th>Saldo Disponib.</th>
+                    <th>Cantid. Pedido</th>
+                    <th>Cantid. Facturar</th>
+                    <th>% Nego.</th>
+                    <th>Precio</th>
+                    <th>IVA.</th>
+                    <th>Total</th>
+                    <th>Prom.</th>
+                    <!--<th>Eli.</th> -->
+
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="5"></td>
+                    <td class="text-right">Total:</td>
+                    <td id="totalCantidadPedido" class="text-right"></td>
+                    <td id="totalCantidadFacturar" class="text-right"></td>
+                    <td colspan="6"></td>
+                </tr>
+                </tfoot>
+
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!--botones acciones -->
+<!--<div class="card">-->
+<!--    <div class="card-header">-->
+<!--        <div class="card-tools">-->
+<!--            <a href="{% url 'ventas:control-pedidos-clientes' %}" class="btn btn-primary">-->
+<!--                Atras-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<div class="footer-section">
+    <div>
+        <div class="form-group-pie">
+            <label for="descripcion_vta_item">Descipcion Vta.:</label>
+            <input type="text" id="descripcion_vta_item" class="form-control full-width-input">
+        </div>
+        <div class="form-group-pie">
+            <label for="lv_descuentos">%Descuen. Aplicados: </label>
+            <input type="text" id="lv_descuentos" class="form-control full-width-input">
+        </div>
+        <div class="form-group-pie">
+            <label for="valor_descuento_venta">Valor Descuentos: </label>
+            <input type="text" id="valor_descuento_venta" class="form-control full-width-input">
+        </div>
+        <div class="form-group-pie">
+            <label for="lv_referencia_item">Referencia Item: </label>
+            <input type="text" id="lv_referencia_item" class="form-control full-width-input">
+        </div>
+        <div class="form-group-pie">
+            <label for="lv_nombre_marca">Marca: </label>
+            <input type="text" id="lv_nombre_marca" class="form-control full-width-input">
+        </div>
+    </div>
+    <div>
+        <div class="form-group-pie">
+            <label for="nro_lote">Nro. Lote : </label>
+            <input type="text" id="nro_lote">
+        </div>
+        <div class="form-group-pie">
+            <label for="fecha_fabricacion">Fabricacion: </label>
+            <input type="text" id="fecha_fabricacion">
+        </div>
+        <div class="form-group-pie">
+            <label for="fecha_vencimiento">Vencimiento : </label>
+            <input type="text" id="fecha_vencimiento">
+        </div>
+    </div>
+    <div>
+        <div class="form-group-pie">
+            <a href="{% url 'ventas:control-pedidos-clientes' %}" class="btn btn-primary">
+                Atras
+            </a>
+             <button type="button" id="btnGuardar" class="btn btn-primary">Guardar</button>
+        </div>
+    </div>
+    <div>
+        <div class="form-group-pie">
+            <label for="sub_sin_iva">Base Imponible 0%:</label>
+            <input type="text" id="sub_sin_iva" class="form-control  small_Indetif-input">
+        </div>
+        <div class="form-group-pie">
+            <label for="sub_con_iva">Base Imponible I.V.A:</label>
+            <input type="text" id="sub_con_iva" class="form-control  small_Indetif-input">
+        </div>
+        <div class="form-group-pie">
+            <label for="iva_valor">Valor I.V.A:</label>
+            <input type="text" id="iva_valor" class="form-control  small_Indetif-input">
+        </div>
+        <div class="form-group-pie">
+            <label for="total">Total: </label>
+            <input type="text" id="total" class="form-control small_Indetif-input">
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-custom-width" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Buscar Clientes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body p-0">
+                <iframe id="modalIframe" src="" style="width:100%; height:85vh; border:none;"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% block contentList %}{% endblock %}
+{% endblock %}
+
+{% block bodyFooterScripts %}
+
+
+<!-- VEN_0123.html -->
+<script>
+    var buscarEntidadesClientesUrl = "{% url 'ventas:buscar-entidades-clientes' %}";
+</script>
+<script>
+
+    window.addEventListener('message', function (event) {
+
+        if (event.data && event.data.codPersona) {
+            codPersonaSeleccionadoCre_0020 = event.data.codPersona;
+            // console.log('Recibido codPersonaSeleccionadoCre_0020:', codPersonaSeleccionadoCre_0020);
+            $('#myModal').modal('hide');
+            if (codPersonaSeleccionadoCre_0020 !== null) {
+                datosCliente(codPersonaSeleccionadoCre_0020);
+            }
+        }
+    });
+
+
+</script>
+
+<script type="text/javascript">
+
+    var accion = '{{ accion|escapejs }}';
+    var datosConsultaCab = JSON.parse('{{ datosConsultaCab|escapejs }}');
+    var datosConsultaDet = JSON.parse('{{ datosConsultaDet|escapejs }}');
+
+</script>
+
+
+<script src="{% static 'js/ventas/ven_0123.js' %}"></script>
+
+
+<script src="{% static 'lib/adminlte-3.0.4/plugins/select/js/select2.min.js' %}"></script>
+{% block bodyFooterScriptsList %}{% endblock %}
+{% endblock %}

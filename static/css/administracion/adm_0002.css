@@ -1,0 +1,224 @@
+table {
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+.table-edit-pencil {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+
+.btn {
+    font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 300px;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+
+.table.dataTable tbody tr {
+    height: 30px;
+}
+
+
+.table .form-control {
+    height: 30px;
+    padding: 0;
+    font-size: 0.8rem;
+    line-height: 30px;
+}
+
+
+.table.dataTable tbody td {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: normal;
+}
+
+/*control de tamaño de la columna */
+.table.dataTable tbody td.btnCell {
+    padding: 0;
+    text-align: center;
+}
+
+.highlight {
+    background-color: #ffcccc !important;
+}
+
+.selected-row {
+    background-color: #d9edf7;
+}
+
+
+.selected-row,
+.selected-row td,
+.selected-row select {
+    background-color: #b6cfed !important;
+}
+
+
+/* Estilos del menú de opciones */
+#menu-container {
+    width: 100%; /* Ancho completo del contenedor padre */
+    height: 500px; /* Altura fija, ajusta según tus necesidades */
+    overflow-y: auto; /* Habilita el desplazamiento vertical si el contenido excede la altura */
+    border: 1px solid #ddd; /* Opcional: agrega un borde para visualizar el contenedor */
+    padding: 10px; /* Opcional: agrega padding para espaciar el contenido del borde */
+}
+.menu-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.menu-item {
+    margin: 5px 0;
+    cursor: pointer;
+    position: relative;
+}
+
+.menu-sublist {
+    padding-left: 20px;
+    display: none;
+}
+
+.menu-toggle {
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/*sirve para desabilitar opciones del menu de opciones */
+.disabled-link {
+    pointer-events: none;
+    cursor: default;
+    color: gray; /* Opcional: Cambiar el color para indicar que está deshabilitado */
+}
+
+
+/* Estilo para los panes */
+.tab-content .tab-pane {
+    padding: 0; /* Elimina el padding interno */
+}
+
+.flex-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.left-pane {
+    flex: 0 0 20%; /* Ocupa el 20% del ancho del contenedor padre */
+    margin-right: 10px; /* Pequeño margen a la derecha */
+}
+
+.right-pane {
+    flex: 1; /* Ocupa el resto del espacio disponible */
+}
+
+/*modal modulos*/
+.modal-dialog.custom-modal {
+    max-width: 600px; /* Ancho personalizado */
+}
+
+#modal-modulos .modal-body {
+    max-height: 300px; /* Altura máxima del cuerpo del modal */
+    overflow-y: auto; /* Permitir desplazamiento si el contenido es más alto */
+}
+
+#modalTable {
+    width: 100%;
+}
+
+/* Estilo para los inputs */
+.custom-input {
+    height: 20px; /* Ajusta la altura según tus necesidades */
+    width: 30%; /* Ocupa todo el ancho disponible */
+    margin-bottom: 10px; /* Espacio entre inputs */
+}
+
+.short-input {
+    width: 10%; /* Cambia este valor según el tamaño deseado */
+}
+
+
+.card-body {
+    border: 1px solid #ccc; /* Borde delgado para diferenciar las secciones */
+    padding: 10px; /* Espacio interno para que el contenido no toque el borde */
+    margin-bottom: 0; /* Elimina el margen inferior para que estén pegados */
+    background-color: #f9f9f9; /* Color de fondo opcional */
+}
+
+.card-body + .card-body {
+    border-top: none; /* Opcional: elimina el borde superior de los siguientes elementos para un efecto de pegado */
+}
+
+
+
+
+#menuOpcionesRol-container {
+    width: 100%; /* Ancho completo del contenedor padre */
+    height: 500px; /* Altura fija, ajusta según tus necesidades */
+    overflow-y: auto; /* Habilita el desplazamiento vertical si el contenido excede la altura */
+    border: 1px solid #ddd; /* Opcional: agrega un borde para visualizar el contenedor */
+    padding: 10px; /* Opcional: agrega padding para espaciar el contenido del borde */
+}
+.menuOpcionesRol-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.menuOpcionesRol-item {
+    margin: 5px 0;
+    cursor: pointer;
+    position: relative;
+}
+
+.menuOpcionesRol-sublist {
+    padding-left: 20px;
+    display: none;
+}
+
+.menuOpcionesRol-toggle {
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 5px;
+}
+.status-icon {
+    color: inherit; /* Asegúrate de que no haya un color predeterminado aquí */
+}
+
+
+/* Estilo para los panes  OPCION ROL*/
+.tab-content .tab-pane {
+    padding: 0; /* Elimina el padding interno */
+}
+
+.flex-containerOpcionRol {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.leftRol-pane {
+    flex: 0 0 30%;
+    margin-right: 10px; /* Pequeño margen a la derecha */
+}
+
+.rightRol-pane {
+    flex: 1; /* Ocupa el resto del espacio disponible */
+}
+
+
+.selected-item {
+    background-color: #91bfff; /* Cambia este color al que prefieras */
+    color: #0b0b0b;
+}

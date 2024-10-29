@@ -1,0 +1,15 @@
+select.read-only {
+    border: 0 !important;
+    box-shadow: none !important;
+    background-color: white !important;
+}
+
+input.read-only {
+    border: 0 !important;
+    background-color: white !important;
+}
+
+textarea.read-only {
+    border: 0 !important;
+    background-color: white !important;
+}

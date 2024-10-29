@@ -1,0 +1,65 @@
+{% extends "index.html" %}
+
+{% block content %}
+<section class="content">
+    <div class="container-fluid h-100 d-flex justify-content-center align-items-center">
+        <div class="row justify-content-center align-items-center w-100">
+            <div class="col-md-6">
+                <form method="post">
+                    <div class="card card-primary">
+
+                        {% csrf_token %}
+
+                        <div class="alert alert-danger alert-dismissible">
+                            <h5><i class="icon fas fa-ban"></i> Notificacion!</h5>
+                             ¿Estas seguro de eliminar este  registro  :  {{ object.nombre }}?
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary btn-flat">
+                            <i class=" fas fa-save"></i>Si,Aceptar
+
+                        </button>
+
+                        <a href="{{ lista_url }}" class="btn-btn-info btn-flat">
+                            <i class=" fas fa-items"></i> Cancelar
+
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+{% block extra_js %}
+<script>
+    $('form').on( 'submit',function(e) {
+      e.preventDefault();
+      var parameters = $(this).serializeArray();
+      $.ajax({
+                url: window.location.pathname,
+                type: 'POST',
+                data: {},
+                dataType: 'json',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            }).done(function(data) {
+                if(!data.hasOwnProperty('error')) {
+                  location.href = '{% url "hometipocatalogo" %}';
+                  return false;
+                }
+                message_error(data.error);
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                alert(textStatus + ': ' + errorThrown);
+            }).always(function(data){
+      });
+    });
+</script>
+
+{% endblock %}
+{% endblock %}
+

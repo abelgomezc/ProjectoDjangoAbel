@@ -1,0 +1,150 @@
+/*table.dataTable thead tr {*/
+/*    background-color: #f7f7f7;*/
+/*}*/
+
+table {
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+.table-edit-pencil {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+
+.btn {
+    font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 300px;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+
+.table.dataTable tbody tr {
+    height: 30px;
+}
+
+
+.table .form-control {
+    height: 30px;
+    padding: 0;
+    font-size: 0.8rem;
+    line-height: 30px;
+}
+
+
+.table.dataTable tbody td {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: normal;
+}
+
+/*control de tamaño de la columna */
+.table.dataTable tbody td.btnCell {
+    padding: 0;
+    text-align: center;
+}
+
+.highlight {
+    background-color: #ffcccc !important;
+}
+
+.selected-row {
+    background-color: #d9edf7;
+}
+
+.image-container {
+    width: 190px; /* Tamaño fijo del cuadro */
+    height: 190px; /* Tamaño fijo del cuadro */
+    border: 1px solid #ccc; /* Opcional, para ver el borde del cuadro */
+    overflow: hidden; /* Ocultar el desbordamiento */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ajustar al cuadro manteniendo las proporciones */
+}
+
+.param-info {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.param-input-small {
+    flex: none;
+    width: 100px;
+    height: 25px;
+    padding: 2px 5px;
+    font-size: 14px;
+}
+
+.param-input-large {
+    flex: none;
+    width: 400px;
+    height: 25px;
+    padding: 2px 5px;
+    font-size: 14px;
+}
+
+
+.small-form {
+    max-width: 450px;
+    width: 90%;
+    margin: auto;
+    text-align: left;
+}
+
+.small-form .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.small-form .form-group label {
+    font-size: 0.75rem;
+    width: 30%;
+    text-align: right;
+    margin-right: 10px; /* Espacio entre la etiqueta y el campo */
+    white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
+}
+
+
+.small-form .form-group .form-control,
+.small-form .form-group select {
+    /* Mantenemos las propiedades anteriores */
+    flex: 1; /* Ocupa todo el espacio restante */
+    font-size: 0.75rem; /* Tamaño de fuente más pequeño */
+    padding: 0.25rem 0.5rem; /* Reduce el relleno */
+    width: auto; /* Ancho automático para adaptarse al contenido */
+    max-width: 30%; /* Reducimos el ancho máximo */
+    font-weight: bold; /* Tipo de letra negrita */
+}
+
+
+.selected-row,
+.selected-row td,
+.selected-row select {
+    background-color: #b6cfed !important;
+}
+
+
+.disabled-cell {
+    background-color: #f2f2f2; /* Color de fondo para celdas deshabilitadas */
+    color: #999; /* Color de texto para celdas deshabilitadas */
+}
+
+
